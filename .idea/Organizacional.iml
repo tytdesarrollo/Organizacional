@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/bootstrap" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/bootstrap-material-design" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/bootstrap-sass" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/desandro-matches-selector" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/ev-emitter" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/fizzy-ui-utils" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/flickity" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/get-size" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/jquery" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/jquery.inputmask" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/punycode" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/sweetalert" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/tap-listener" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/tingle-master" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/typeahead.js" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/unidragger" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/unipointer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/yii2-pjax" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/cebe/markdown" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpoffice/docs" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpoffice/samples" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpoffice/src" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpoffice/tests" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpspec/php-diff" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-bootstrap" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-codeception" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-faker" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-flickity" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-gii" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-phpoffice" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-sweetalert" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-swiftmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-tcpdf" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2-tingle" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
