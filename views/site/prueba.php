@@ -21,11 +21,13 @@ use PhpOffice\PhpPresentation\Style\Bullet;
 
 $objPHPPowerPoint = new PhpPresentation();
 
+var_dump($resultado);
+
 $c = [
-    'AREA'=> array ('PRIMER AREA','SEGUNDA AREA','TERCERA AREA','CUARTA AREA','QUINTA AREA'),
-    'NIVEL'=> array ('5','3','2','2','5'),
-    'CODIGO' => array('111','011','001','122','123'),
-    'DEPENDENCIA' => array('122','001','','','011')
+    'AREA'=> $resultado["NOM_OCUP_SUP"],
+    'NIVEL'=> $resultado["NIVEL"],
+    'CODIGO' => $resultado["COD_ESTRUCTURA"],
+    'DEPENDENCIA' => $resultado["COD_EST_SUP"]
 ];
 
 // ELIMINA DUPLICADOS
@@ -267,7 +269,7 @@ for ($i = 0; $i < $cantidadv; $i++) {
     }
 
   //  var_dump($posicenx[$i]);
-    var_dump($cnivposic[$clave]);
+    //var_dump($cnivposic[$clave]);
 
 }
 
