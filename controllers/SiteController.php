@@ -30,15 +30,22 @@ use app\models\TwPcInsertHorasExtras;
 use app\models\TwPcInsertHoras;
 use app\models\TwPcArchivos;
 use app\models\TwPcEliminaArchivos;
-
+use app\models\TwPcOrganigrama;
 
 class SiteController extends Controller
 { 	
 
+	public function actionPrueba2(){	
+		$this->layout=false;
+		return $this->render('prueba2');	
+	}
 
 	public function actionPrueba(){	
 		//$this->layout=false;
-		return $this->render('prueba');	
+		$model = new TwPcOrganigrama;
+		$resultado = $model->procedimiento(808);
+
+		return $this->render('prueba',['resultado' => $resultado[0]]);	
 	}
 
 	public function actionNomina(){
