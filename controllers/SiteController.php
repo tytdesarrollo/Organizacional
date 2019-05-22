@@ -43,9 +43,9 @@ class SiteController extends Controller
 	public function actionPrueba(){	
 		//$this->layout=false;
 		$model = new TwPcOrganigrama;
-		$resultado = $model->procedimiento(808);
+		$resultado = $model->procedimiento(1); //808
 
-		return $this->render('prueba',['resultado' => $resultado[0]]);	
+		return $this->render('prueba',['resultado' => $resultado[0], 'cantidadNiveles' => $resultado[1]]);	
 	}
 
 	public function actionNomina(){
