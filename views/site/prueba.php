@@ -21,23 +21,39 @@ use PhpOffice\PhpPresentation\Style\Bullet;
 
 $objPHPPowerPoint = new PhpPresentation();
 
-var_dump($resultado);
+$arrayNvlPorc = $cantidadNiveles;
+//var_dump($arrayNvlPorc);
 
 $c = [
-    'AREA'=> $resultado["NOM_OCUP_SUP"],
+    'AREA'=> $resultado["NOM_OCUP"],
     'NIVEL'=> $resultado["NIVEL"],
     'CODIGO' => $resultado["COD_ESTRUCTURA"],
     'DEPENDENCIA' => $resultado["COD_EST_SUP"]
 ];
 
+/*$c = [
+    'AREA'=> array ('PRIMER AREA','SEGUNDA AREA','TERCERA AREA','CUARTA AREA','QUINTA AREA', 'SEIS AREA','SIETE AREA','OCHO AREA','NUEVE AREA','DIEZ AREA', 'PRIMER AREA','SEGUNDA AREA','TERCERA AREA','CUARTA AREA','QUINTA AREA', 'SEIS AREA','SIETE AREA','OCHO AREA','NUEVE AREA','DIEZ AREA','PRIMER AREA','SEGUNDA AREA','TERCERA AREA','CUARTA AREA','QUINTA AREA', 'SEIS AREA','SIETE AREA','OCHO AREA','NUEVE AREA','DIEZ AREA'),
+    'NIVEL'=> array ('1','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2'),
+    'CODIGO' => array('111','011','001','122','236','145','854','654','874','777','785','011','001','122','236','145','854','654','874','777','011','001','122','236','145','854','654','874','777','785'),
+    'DEPENDENCIA' => array('','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111','111')
+];
+
+$cantidadNiveles = [
+    'CANTIDAD'=> array ('1','29'),
+    'NIVEL'=> array ('1','2')
+    
+];*/
+
 // ELIMINA DUPLICADOS
 $cniv = array_unique($c['NIVEL']);
 // ORDENA DE MENOR A MAYOR
 sort($cniv);
+sort($cantidadNiveles['CANTIDAD']);
+//var_dump($cantidadNiveles['CANTIDAD'][count($cantidadNiveles['CANTIDAD'])-1]);
 //sort($c['DEPENDENCIA']);
 //CONTEO DE ARRAYS PARA LOS FOR
 $cantidadniv = count($cniv);
-$cantidadv = count($c['AREA']);
+$cantidadv = $cantidadNiveles['CANTIDAD'][count($cantidadNiveles['CANTIDAD'])-1];
 //DIMENSIONES
 $anchodm = 1300;
 $altodm = 900;
@@ -48,10 +64,17 @@ $altodm = 900;
 
         $anchodmtemp = floor($anchodm * 0..$cantidadv."00");
         $altodmtemp = floor($altodm * 0..$cantidadniv."00");
-        $anchodm = $anchodm+$anchodmtemp;
+        $anchodm = 5366.9;//$anchodm+$anchodmtemp;
         $altodm = $altodm+$altodmtemp;
 
     };
+
+    if($cantidadNiveles['CANTIDAD'][count($cantidadNiveles['CANTIDAD'])-1] < 30){
+        $anchodm = $cantidadNiveles['CANTIDAD'][count($cantidadNiveles['CANTIDAD'])-1] * 255.6;    
+    }else{
+        $anchodm = 5366.9;
+    }
+    
 
 //$objPHPPowerPoint->getLayout()->setDocumentLayout(DocumentLayout::LAYOUT_SCREEN_16X9);
 $objPHPPowerPoint->getLayout()->setDocumentLayout(['cx' => $anchodm, 'cy' => $altodm], true)
@@ -146,17 +169,15 @@ for ($i = 0; $i < $cantidadniv; $i++) {
 // LOGICA POSICIONES X CUADROS
 $anchodmporc = floor($anchodm * 0.07);
 $anchodmresult = $anchodm-$anchodmporc;
-$resultdivuno = floor($anchodmresult/$cantidadv);
-$resultdivdos = floor($resultdivuno/2);
-
-$resultdivunoc = $resultdivdos;
-$resultdivdosc = $resultdivdos;
-$resultdivtresc = $resultdivdos;
-$resultdivcuatroc = $resultdivdos;
-$resultdivcincoc = $resultdivdos;
+$posicionsig = 160;
+$resultdivunoc = 70;
+$resultdivdosc = 70;
+$resultdivtresc = 70;
+$resultdivcuatroc = 70;
+$resultdivcincoc = 70;
 
 //CICLO PARA AREAS/CARGOS
-for ($i = 0; $i < $cantidadv; $i++) {
+for ($i = 0; $i < count($c['NIVEL']); $i++) {
     //CONTEO DE CARACTERES
     //$caractcont = strlen ($c['DEPENDENCIA'][$i]);
 //var_dump($caractcont);
@@ -168,8 +189,8 @@ for ($i = 0; $i < $cantidadv; $i++) {
         case 1:
             // primer cuadro de texto contenido
             $shape = $currentSlide->createRichTextShape()
-                ->setHeight(50)
-                ->setWidth(100)
+                ->setHeight(70)
+                ->setWidth(150)
                 ->setOffsetX($resultdivunoc)
                 ->setOffsetY($cnivposic[$clave]);
             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
@@ -181,13 +202,13 @@ for ($i = 0; $i < $cantidadv; $i++) {
 
             $posicenx[] = $resultdivunoc;
             $posiceny[] = $cnivposic[$clave];
-            $resultdivunoc = floor($resultdivuno+$resultdivunoc);
+            $resultdivunoc = floor($posicionsig+$resultdivunoc);
             break;
         case 2:
             // primer cuadro de texto contenido
             $shape = $currentSlide->createRichTextShape()
-                ->setHeight(50)
-                ->setWidth(100)
+                ->setHeight(70)
+                ->setWidth(150)
                 ->setOffsetX($resultdivdosc)
                 ->setOffsetY($cnivposic[$clave]);
             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
@@ -198,14 +219,15 @@ for ($i = 0; $i < $cantidadv; $i++) {
                 ->setColor( new Color( 'FF000000' ) );
 
             $posicenx[] = $resultdivdosc;
-            $posiceny[] = $cnivposic[$clave];
-            $resultdivdosc = floor($resultdivuno+$resultdivdosc);
+            $posiceny[] = $cnivposic[$clave];            
+                
+            $resultdivdosc = floor($posicionsig+$resultdivdosc);
             break;
         case 3:
             // primer cuadro de texto contenido
             $shape = $currentSlide->createRichTextShape()
-                ->setHeight(50)
-                ->setWidth(100)
+                ->setHeight(70)
+                ->setWidth(150)
                 ->setOffsetX($resultdivtresc)
                 ->setOffsetY($cnivposic[$clave]);
             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
@@ -217,13 +239,14 @@ for ($i = 0; $i < $cantidadv; $i++) {
 
             $posicenx[] = $resultdivtresc;
             $posiceny[] = $cnivposic[$clave];
-            $resultdivtresc = floor($resultdivuno+$resultdivtresc);
+            echo $c['CODIGO'][$i]." - ".$resultdivtresc."<br>";
+            $resultdivtresc = floor($posicionsig+$resultdivtresc);
             break;
         case 4:
             // primer cuadro de texto contenido
             $shape = $currentSlide->createRichTextShape()
-                ->setHeight(50)
-                ->setWidth(100)
+                ->setHeight(70)
+                ->setWidth(150)
                 ->setOffsetX($resultdivcuatroc)
                 ->setOffsetY($cnivposic[$clave]);
             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
@@ -235,13 +258,13 @@ for ($i = 0; $i < $cantidadv; $i++) {
 
             $posicenx[] = $resultdivcuatroc;
             $posiceny[] = $cnivposic[$clave];
-            $resultdivcuatroc = floor($resultdivuno+$resultdivcuatroc);
+            $resultdivcuatroc = floor($posicionsig+$resultdivcuatroc);
             break;
         case 5:
             // primer cuadro de texto contenido
             $shape = $currentSlide->createRichTextShape()
-                ->setHeight(50)
-                ->setWidth(100)
+                ->setHeight(70)
+                ->setWidth(150)
                 ->setOffsetX($resultdivcincoc)
                 ->setOffsetY($cnivposic[$clave]);
             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
@@ -253,16 +276,16 @@ for ($i = 0; $i < $cantidadv; $i++) {
 
             $posicenx[] = $resultdivcincoc;
             $posiceny[] = $cnivposic[$clave];
-            $resultdivcincoc = floor($resultdivuno+$resultdivcincoc);
+            $resultdivcincoc = floor($posicionsig+$resultdivcincoc);
             break;
     }
 }
 
 //CICLO PARA PINTAR LAS LINEAS
+/*
+for ($i = 0; $i < count($c['NIVEL']); $i++) {
 
-for ($i = 0; $i < $cantidadv; $i++) {
-
-    for($j = 0; $j < $cantidadv; $j++){
+    for($j = 0; $j < count($c['NIVEL']); $j++){
         if($c['CODIGO'][$i] == $c['DEPENDENCIA'][$j]){
             $shape = $currentSlide->createLineShape($posicenx[$i], $posiceny[$i], $posicenx[$j], $posiceny[$j])->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setLineWidth(1);
         }
@@ -271,7 +294,7 @@ for ($i = 0; $i < $cantidadv; $i++) {
   //  var_dump($posicenx[$i]);
     //var_dump($cnivposic[$clave]);
 
-}
+}*/
 
 /*
 //SE CREAN LAS LINEAS HASTA LA PRIMER UNIDAD

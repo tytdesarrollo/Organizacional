@@ -32,7 +32,7 @@ class TwPcOrganigrama extends Model{
 	    oci_execute($c3, OCI_DEFAULT);
 		//extrae cada fila de cada cursor de una variable 
 	    oci_fetch_all($c2, $cursor1, null, null, OCI_FETCHSTATEMENT_BY_COLUMN);
-	    oci_fetch_all($c3, $cursor2, null, null, OCI_FETCHSTATEMENT_BY_ROW);
+	    oci_fetch_all($c3, $cursor2, null, null, OCI_FETCHSTATEMENT_BY_COLUMN);
 		//resultado
 		return array($cursor1,$cursor2);
 
