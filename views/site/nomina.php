@@ -30,22 +30,10 @@ use yii\helpers\Url;
 				</a>
 				
 				<a href="#" class="btn btn-success btn-sm download-pdf">
-					<img src="../web/img/pdf-download.svg" alt=""><span class="text-span">Descargar</span>
+					<img src="../web/img/excel-download.svg" alt=""><span class="text-span">Descargar</span>
 				</a>
 			</div>
 		
-	</div>
-	<div class="flex-2 flex-end mrg__right-25">
-		<div  id="download" class="disp-flex-center">
-			<div  id="inputDownload">
-				<input type="text" placeholder="Nombre, cargo..." class="form-control"> 			
-			</div>
-			<div  class="mrg__left-15">
-				<p><a href="#" class="btn btn-success " id="btn-search">
-					<i class="material-icons icon__26">search</i></a>
-				</p> 				
-			</div>
-		</div>
 	</div>
 </div>
 <!-- <div class="" id="parent">

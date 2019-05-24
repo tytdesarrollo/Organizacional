@@ -35,115 +35,15 @@ $session = Yii::$app->session;
 	<nav id="menu" class="navbar">
 		<div class="container-fluid">
 			<div class="content__logo pull-left">
-				<?= Html::img('@web/img/logo_small.svg', ['alt' => 'Auto Gestión Web', 'height' => '38px']) ?>
-				<div class="hidden-xs" style="margin-top: 10px;"><p>Mesa Centro de servicios compartidos.</p></div>
+				<?= Html::img('@web/img/logo_electricaribe_small.svg', ['alt' => 'Auto Gestión Web', 'height' => '38px']) ?>
+				<div class="hidden-xs" style="margin-top: 10px;"><p>&nbsp;</p></div>
 			</div>
 			<div class="pull-right">
-				<div class="content__icon-menu__aux hidden-xxs">
-					<a id="search" href="#" class="menu-trigger"><i class="material-icons icon__26">&#xE8B6;</i></a>
-				</div>
+
 				<div class="content__icon-menu__aux">
 					<?= Html::a('<i class="material-icons icon__24">&#xE88A;</i>', ['site/principal'], ['class' => 'menu-trigger']) ?>
 				</div>
-				<div class="content__icon-menu__aux visible-lg-inline-block">
-					<div class="dropdown">
-						<a href="#" data-toggle="dropdown" class="dropdown-toggle menu-trigger">
-							<i class="material-icons icon__24">&#xE5C3;</i>
-						</a>
-						<ul class="dropdown-menu menu-modul">
-							<div class="vin"></div>
-							<p class="txt-category fnt__Medium">Productos</p>
-							<li class="modul">
-								<a href="/Autogestion2/web/index.php?r=site%2Fnominainicio" >
-									<img src="img/icon_nomina.png" alt="Nómina" class="icon-modul">
-									<span class="title-modul">Nómina</span>
-								</a>
-							</li>
-							<li class="modul">
-								<a href="#">
-									<img src="img/icon_awa.png" alt="Awa" class="icon-modul">
-									<span class="title-modul">Awa</span>
-								</a>
-							</li>
-							<li class="modul">
-								<a href="#">
-									<img src="img/icon_hims.png" alt="Hims" class="icon-modul">
-									<span class="title-modul">Hims</span>
-								</a>
-							</li>
-							<li class="divider"></li>
-							<p class="txt-category fnt__Medium">Módulos</p>
-							<?php
-								if(@$session['menus'][0]=='TRUE'){
-							?>
-								<li class="modul">
-									<?= Html::a('<img class="icon-modul" src="img/icon_vacaciones.png" alt="Vacaciones"><span class="title-modul">Vacaciones</span>', ['site/vacaciones']) ?>
-								</li>
-							<?php
-								}
 
-								if(@$session['menus'][1]=='TRUE'){
-							?>
-								<li class="modul">
-									<?= Html::a('<img class="icon-modul" src="img/icon_turnos.png" alt="Horas extras"><span class="title-modul">Horas extras</span>', ['site/turnos']) ?>
-								</li>
-							<?php
-								}
-
-								if(@$session['menus'][2]=='TRUE'){
-							?>
-								<li class="modul">
-									<?= Html::a('<img class="icon-modul" src="img/icon_certlaboral.png" alt="Certificado laboral"><span class="title-modul">Certificado laboral</span>', ['site/certificadolaboral']) ?>
-								</li>
-							<?php
-								}
-
-								if(@$session['menus'][3]=='TRUE'){
-							?>
-								<li class="modul">
-									<?= Html::a('<img class="icon-modul" src="img/icon_compago.png" alt="Comprobante de pago"><span class="title-modul">Comprobante de pago</span>', ['site/comprobantespago']) ?>
-								</li>
-							<?php
-								}
-
-								if(@$session['menus'][4]=='TRUE'){
-							?>
-								<li class="modul">
-									<?= Html::a('<img class="icon-modul" src="img/icon_certingreso.png" alt="Certificado de ingresos y retención"><span class="title-modul">Certificado de ingresos</span>', ['site/certificadosretencion']) ?>
-								</li>
-							<?php
-								}
-							?>
-							<li class="divider"></li>
-							<p class="txt-category fnt__Medium">Información</p>
-							<?php
-								if(@$session['menus'][5]=='TRUE'){
-							?>
-								<li class="modul">
-									<?= Html::a('<img class="icon-modul" src="img/icon_equipnomina.png" alt="Equipo de nómina"><span class="title-modul">Equipo de nómina</span>', ['site/equiponomina']) ?>
-								</li>
-							<?php
-								}
-
-								if(@$session['menus'][6]=='TRUE'){
-							?>
-								<li class="modul">
-									<?= Html::a('<img class="icon-modul" src="img/icon_actlaboral.png" alt="Actualidad laboral"><span class="title-modul">Actualidad laboral</span>', ['site/actualidadlaboral']) ?>
-								</li>
-							<?php
-								}
-
-								if(@$session['menus'][7]=='TRUE'){
-							?>
-								<li class="modul">
-									<?= Html::a('<img class="icon-modul" src="img/icon_cronograma.png" alt="Cronograma cierre de nómina"><span class="title-modul">Cronograma cierre nómina</span>', ['site/cronogramanomina']) ?>
-								</li>
-							<?php
-								}								
-							?>
-						</ul>
-					</div>
-				</div>
 				<!-- MENÚ MODAL MOBILE -->
 				<div class="content__icon-menu__aux hidden-lg">
 						<a href="#" class="menu-modal-trigger menu-trigger">
