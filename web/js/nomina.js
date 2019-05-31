@@ -49,6 +49,7 @@ function getTemplate(items){
     // Configuramos la plantilla, como tamaño, nombre, padding
     var result = new primitives.orgdiagram.TemplateConfig();
     result.name = "Template";
+    //TAMANO DE CUADROS
     result.itemSize = new primitives.common.Size(212, 255);
     result.minimizedItemSize = new primitives.common.Size(10, 10);
     result.highlightPadding = new primitives.common.Thickness(2, 2, 2, 2);    
@@ -74,30 +75,10 @@ function getTemplate(items){
     var itemTemplate = jQuery(
         '<div>'
         + '<div name="titleBackground" class="bp-item bp-corner-all bp-title-frame" style="top: 5px; left: 12px; width: 187px; height: 20px;">'
-            + '<div name="title" class="bp-item bp-title" style="top: 3px; left: 6px; width: 180px; height: 18px; color:white;"></div>'
+        + '<div name="title" class="bp-item bp-title" style="top: 3px; left: 6px; width: 180px; height: 18px; color:white;"></div>'
         + '</div>'
-        + '<div class="bp-item bp-photo-frame" style="top: 31px; left: 12px; width: 50px; height: 60px;">'
-                + '<img name="photo" style="height: 60px; width:50px; border-style: solid; border-width: 1px; border-color: #232323;" />'
-        + '</div>'
-        + '<div class="bp-item" style="top: 31px; left: 72px; width: 126px; height: 22px; font-size: 11px; display:flex;" >'
-        + '<div  style="flex:1;"><b>Edad:</b></div>'
-        + '<div name="age" class="bp-item" style="flex:1; left: 72px; width:55px"></div>'
-        + '</div>'
-        + '<div class="bp-item" style="top: 47px; left: 72px; width: 126px; height: 22px; font-size: 11px; display:flex; " >'
-        + '<div  style="flex:1;"><b>Antigüedad:</b></div>'
-        + '<div name="antiquity" class="bp-item" style="flex:1; left: 72px; width:55px"></div>'
-        + '</div>'
-        + '<div class="bp-item" style="top: 63px; left: 72px; width: 126px; height: 22px; font-size: 11px; display:flex; " >'
-        + '<div  style="flex:1;"><b>Salario:</b></div>'
-        + '<div name="salary" class="bp-item" style="flex:1; left: 72px; width:55px"></div>'
-        + '</div>'
-        + '<div class="bp-item" style="top: 79px; left: 72px; width: 126px; height: 22px; font-size: 11px; display:flex; " >'
-        + '<div  style="flex:1;"><b>Contrato:</b></div>'
-        + '<div name="contract" class="bp-item" style="flex:1; left: 72px; width:55px"></div>'
-        + '</div>'
-        + '<div class="bp-item" style="top: 105px; left: 12px; width: 216px; height: 22px; font-weight:bold; font-size: 12px;">Competencias del cargo</div>'
-        + '<div name="nose" class="felipe bp-item" style="top: 130px; left: -15px; width: 210px; height: 78px; font-size: 11px;">'+code+'</div>'
-        + '<button name="btnSeeMore" class="btn btn-primary" style="padding:0 7px 0 7px; left:127px; top:206px;height:23px; color: white; font-family: Roboto, sans-serif; font-size:12px " data-buttonname="info" data-toggle="modal" data-target="#user" type="button">Ver más</button>'     
+        + '<div class="bp-item" style="top: 50px; left: 12px; width: 216px; height: 22px; font-weight:bold; font-size: 12px;">Empleados registrados</div>'
+        + '<div name="nose" class="felipe bp-item" style="top: 80px; left: -15px; width: 210px; height: 78px; font-size: 11px;">'+code+'</div>'
     +'</div>').css({
     width: (result.itemSize.width+10) + "px",
     height: (result.itemSize.height+10) + "px",
@@ -601,10 +582,6 @@ function getCursorTemplate() {
     }).addClass("btn-group btn-group-vertical");
 
     //Creamos los botones y les damo un nombre a cada uno
-    
-    bootStrapVerticalButtonsGroup.append('<button class="btn btn-success btn-small" style="margin-left:-19px; margin-top:-8px; color: white; font-size:15px;" data-buttonname="infoDependence" data-toggle="modal" data-target="#dependenceModal" type="button"><span class="glyphicon glyphicon-info-sign" style="top: 6px;" aria-hidden="true"></span></button>');
-    
-    cursorTemplate.append(bootStrapVerticalButtonsGroup);
 
     result.cursorTemplate = cursorTemplate.wrap('<div>').parent().html();
 
@@ -1015,10 +992,10 @@ function getCharges() {
 //Función que carga las dependencias y cargos para que el usuario elija
 function loadOrganigram(){
 
-    var dependences = getDependences();     
+    var dependences = getDependences();
     var charges = getCharges();
 
-    $('#modalOrganigram').modal('show');    
+    $('#modalOrganigram').modal('show');
 
     var template = '<nav class="navigation"><ul class="accordion">';
     for (let i = 0; i < dependences.length; i++) {
@@ -1035,12 +1012,11 @@ function loadOrganigram(){
         +                               '</svg>'
         +                           '</div>'
         +                       '</label>'
-        +                   ' </div>'	
-        +               '</a>'
-        +               '<ul class="sub-accordion">';
-        
-        for (let j = 0; j < charges[i].length; j++) {
-                    
+        +                   ' </div>'
+        +               '</a>';
+
+      /*  for (let j = 0; j < charges[i].length; j++) {
+
             template +='<li class="sub-accordion__item">'
                            + '<div>' + charges[i][j]
                             +   '<div class="cntrCharge" style="">'
@@ -1056,10 +1032,10 @@ function loadOrganigram(){
                             +   '</div>'
                             +'</div>'
                         +'</li>';
-                       
+
         }
-        
-        template += '</ul></li>';   
+
+        template += '</ul></li>';*/
     }
     template += '</ul></nav>';
 
