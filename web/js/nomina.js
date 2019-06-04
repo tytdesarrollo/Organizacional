@@ -1,8 +1,9 @@
 var countTemplate = 0;
 var setTimeOutAlert;
+console.log(getempleadosel);
 
-jQuery(document).ready(function () {    
-    
+jQuery(document).ready(function () {
+
      //Configuramos el diagrama
      var options = new primitives.orgdiagram.Config();
      //Deshabilitamos un checkbox que viene por defecto en la plantilla
@@ -49,11 +50,7 @@ function getTemplate(items){
     // Configuramos la plantilla, como tamaño, nombre, padding
     var result = new primitives.orgdiagram.TemplateConfig();
     result.name = "Template";
-    //TAMANO DE CUADROS
-    result.itemSize = new primitives.common.Size(212, 255);
-    result.minimizedItemSize = new primitives.common.Size(10, 10);
-    result.highlightPadding = new primitives.common.Thickness(2, 2, 2, 2);    
-    result.hasSelectorCheckbox = true;
+
     
     
     //Esta plantilla nos mostrará un item con más datos, y un botón que permite ver más información del item
@@ -72,18 +69,45 @@ function getTemplate(items){
 
     document.getElementById("list").innerHTML = code;
 
-    var itemTemplate = jQuery(
-        '<div>'
-        + '<div name="titleBackground" class="bp-item bp-corner-all bp-title-frame" style="top: 5px; left: 12px; width: 187px; height: 20px;">'
-        + '<div name="title" class="bp-item bp-title" style="top: 3px; left: 6px; width: 180px; height: 18px; color:white;"></div>'
-        + '</div>'
-        + '<div class="bp-item" style="top: 50px; left: 12px; width: 216px; height: 22px; font-weight:bold; font-size: 12px;">Empleados registrados</div>'
-        + '<div name="nose" class="felipe bp-item" style="top: 80px; left: -15px; width: 210px; height: 78px; font-size: 11px;">'+code+'</div>'
-    +'</div>').css({
-    width: (result.itemSize.width+10) + "px",
-    height: (result.itemSize.height+10) + "px",
-    }).addClass("bp-item bp-corner-all bt-item-frame");    
-    
+    if(getempleadosel=="empshow") {
+
+        //TAMANO DE CUADROS
+        result.itemSize = new primitives.common.Size(212, 255);
+        result.minimizedItemSize = new primitives.common.Size(10, 10);
+        result.highlightPadding = new primitives.common.Thickness(2, 2, 2, 2);
+        result.hasSelectorCheckbox = true;
+
+        var itemTemplate = jQuery(
+            '<div>'
+            + '<div name="titleBackground" class="bp-item bp-corner-all bp-title-frame" style="top: 5px; left: 12px; width: 187px; height: 20px;">'
+            + '<div name="title" class="bp-item bp-title" style="top: 3px; left: 6px; width: 180px; height: 18px; color:white;"></div>'
+            + '</div>'
+            + '<div class="bp-item" style="top: 50px; left: 12px; width: 216px; height: 22px; font-weight:bold; font-size: 12px;">Empleados registrados</div>'
+            + '<div name="nose" class="felipe bp-item" style="top: 80px; left: -15px; width: 210px; height: 78px; font-size: 11px;">' + code + '</div>'
+            + '</div>').css({
+            width: (result.itemSize.width + 10) + "px",
+            height: (result.itemSize.height + 10) + "px",
+        }).addClass("bp-item bp-corner-all bt-item-frame");
+
+    }else{
+
+        //TAMANO DE CUADROS
+        result.itemSize = new primitives.common.Size(150, 55);
+        result.minimizedItemSize = new primitives.common.Size(10, 10);
+        result.highlightPadding = new primitives.common.Thickness(2, 2, 2, 2);
+        result.hasSelectorCheckbox = true;
+
+        var itemTemplate = jQuery(
+            '<div>'
+           // + '<div name="titleBackground" class="bp-item bp-corner-all bp-title-frame" style="top: 15px; left: 0px; width: 170px; height: 20px;">'
+            + '<div name="title" class="bp-item bp-title" style="top: 30%; left: 10%; width: 140px; height: 18px; color:#001072;"></div>'
+            + '</div>'
+            + '</div>').css({
+            width: (result.itemSize.width + 10) + "px",
+            height: (result.itemSize.height + 10) + "px",
+        }).addClass("bp-item bp-corner-all bt-item-frame");
+
+    }
 
     result.itemTemplate = itemTemplate.wrap('<div>').parent().html();
 

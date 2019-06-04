@@ -49,7 +49,29 @@ class SiteController extends Controller
 	}
 
 	public function actionNomina(){
-		return  $this->render('nomina');
+
+        if(isset($_POST['empleadosel']) && isset($_POST['cargenv'])){
+
+            return $this->redirect(['site/nomina','empleadosel'=>$_POST['empleadosel'],'cargenv'=>$_POST['cargenv']]);
+
+        }elseif (isset($_POST['cargenv'])){
+
+            return $this->redirect(['site/nomina','cargenv'=>$_POST['cargenv']]);
+
+        }elseif (isset($_GET['empleadosel']) && isset($_GET['cargenv'])){
+
+            return  $this->render('nomina');
+
+        }elseif (isset($_GET['cargenv'])){
+
+            return  $this->render('nomina');
+
+        }else{
+
+            return  $this->render('nomina');
+        }
+
+
 	}
 	
 	public function actionNominainicio(){
