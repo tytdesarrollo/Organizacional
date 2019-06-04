@@ -3,7 +3,7 @@ use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
-
+$this->title = 'Estructura Organizacional';
 // $this->registerJsFile(
 // 		'@web/js/pdf.js',
 // 		['depends' => [\yii\web\JqueryAsset::className()]]
@@ -36,10 +36,9 @@ use yii\helpers\Url;
 	<div class="flex-2 flex-start mrg__left-25">	
 		
 			<div class="">
-				<a href="#" id="btn-Organigram" class="btn btn-success btn-sm "  onclick="loadOrganigram()">
+				<a href="#" id="btn-Organigram" class="btn btn-success btn-sm "  data-toggle="modal" data-target="#cargosModal"">
 					<img src="../web/img/organigrama-icon.svg" alt=""><span class="text-span">Organigrama</span>
 				</a>
-				
 				<a href="#" class="btn btn-success btn-sm download-pdf">
 					<img src="../web/img/excel-download.svg" alt=""><span class="text-span">Descargar</span>
 				</a>
@@ -47,36 +46,58 @@ use yii\helpers\Url;
 		
 	</div>
 </div>
-<!-- <div class="" id="parent">
-	<div class="col-md-6">	
-		<div class="pull-left">
-			<div class="col-md-12">
-				<a href="#" id="btn-Organigram" class="btn btn-success btn-sm "  onclick="loadOrganigram()">
-					<img src="../web/img/organigrama-icon.svg" alt=""><span class="text-span">Organigrama</span>
-				</a>
-				<a href="#" class="btn btn-success btn-sm download-pdf">
-					<img src="../web/img/pdf-download.svg" alt=""><span class="text-span">Descargar</span>
-				</a>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-6">
-		<div class="pull-right" id="download" >
-			<div class="col-md-9">
-				<input type="text" placeholder="Nombre, cargo..." class="form-control"> 			
-			</div>
-			<div class="col-md-3">
-				<p><a href="#" class="btn btn-success " id="btn-search">
-					<i class="material-icons icon__26">search</i></a>
-				</p> 				
-			</div>
-		</div>
-	</div>
-</div> -->
 
 <div id="basicdiagram" style="width: 100%; height: 450px; margin-top:50px; position:absolute"></div>
 </div>
 
+<!-- Modal -->
+<?php $form = ActiveForm::begin([
+    "method" => "POST",
+    "id" => "compro-form",
+    "enableClientValidation" => false,
+    "enableAjaxValidation" => true,
+]);
+?>
+<div class="modal fade" id="cargosModal" tabindex="-1" role="dialog" aria-labelledby="cargosModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cargosModalLabel">*Selecciona el cargo padre desde donde se va a visualizar la estructura organizacional:</h5>
+            </div>
+            <div class="modal-body">
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="empleadosel" name="empleadosel" value="empshow"> Mostrar Empleados?
+                    </label>
+                </div>
+                </br>
+                <div class="form-group select-m">
+                    <label class="control-label" for="compagoSelect">
+                        Seleccione Cargo Padre
+                    </label>
+                    <div class="mad-select" id="cargosele">
+                        <ul style="width: 500px; font-size: medium;">
+                            <li style="width: 500px;" class="selected" data-value="">Seleccione...</li>
+                            <?php
+                            for ($i = 0; $i < count($c["AREA"]); $i++) { ?>
+                                <li style="width: 500px;" data-value="<?= $c["CODIGO"][$i] ?>"><?= $c["AREA"][$i] ?></li>
+                            <?php } ?>
+                        </ul>
+                        <input type="hidden" id="cargenv" name="cargenv" value="0" class="form-control">
+                    </div>
+                </div>
+                </br>
+                </br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+                <?= Html::Button('CREAR', ['class' => 'btn btn-raised btn-primary', 'name' => 'enviar-button', 'id' => 'envOrg', 'onclick'=>'Warn();']) ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php ActiveForm::end(); ?>
 	<div class="modal modal-organigram" id="modalOrganigram" tabindex="-1" role="dialog" aria-labelledby="nominaLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -575,7 +596,7 @@ use yii\helpers\Url;
 								<div class="align-middle">
 									<button type="button" class="btn btn-lg buttonEdit">
 										<span class="glyphicon glyphicon-save" aria-hidden="true"></span> Guardar
-									</button>										
+									</button>
 								</div>
 							</div>
 						</div>					
@@ -586,12 +607,52 @@ use yii\helpers\Url;
 	</div>
 </div>
 
-<script>
-    //evitar heredar un recurso de calendarios
-    bandera = 0;
-    //CONVIERTO ARRAY PHP A JS PARA TRATAMIENTO DE DATOS
-    var js_array =<?= json_encode($c);?>;
-    var js_arrayemp =<?= json_encode($e);?>;
-    var datosgrap=js_array;
-    var datosemp=js_arrayemp;
+    <script type="text/javascript">
+
+        //evitar heredar un recurso de calendarios
+        bandera = 0;
+        //CONVIERTO ARRAY PHP A JS PARA TRATAMIENTO DE DATOS
+        var js_array =<?= json_encode($c);?>;
+        var js_arrayemp =<?= json_encode($e);?>;
+        var datosgrap=js_array;
+        var datosemp=js_arrayemp;
+
+        function Warn() {
+
+           var cargoenv = $( "#cargenv" ).val();
+
+            if(cargoenv !== "0"){
+                //console.log('bad');
+            $.ajax({
+                cache: false,
+                type: 'POST',
+                url: '<?php echo Url::toRoute(['site/nomina']); ?>',
+                data: $("#compro-form").serialize(),
+
+                success: function(data){
+
+                },
+              /*  error: function(result) {
+
+                    swal("Ops!", "Parece que tuvimos un problema al crear el organigrama, por favor reportalo con el administrador para darle solución. Gracias!", "error");
+
+                }*/
+            });
+            }else{
+                swal("Error!", "Debes seleccionar un cargo antes de crearlo.", "warning");
+            }
+        };
+
+//CAPTURO VARAIBLE GET QUE VALIDA EMPLEADOS O NO
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        var getempleadosel = getParameterByName('empleadosel');
+
+      // console.log(getempleadosel);
+
 </script>

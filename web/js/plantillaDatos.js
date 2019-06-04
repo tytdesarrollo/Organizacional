@@ -5,7 +5,6 @@ console.log(datosemp);
 function getData() {
     var items = [];
 
-
     for (var i = 0; i < datosgrap["AREA"].length; i++) {
 /*
        var itemspre = new primitives.orgdiagram.ItemConfig({
@@ -21,6 +20,7 @@ function getData() {
             */
 var itemsdos = [];
 
+if(getempleadosel=="empshow"){
         for (var u = 0; u < datosemp["CARGO"].length; u++) {
 
             if(datosemp["CARGO"][u]==datosgrap["CODIGO"][i]){
@@ -29,7 +29,8 @@ var itemsdos = [];
 
             }
         }
-        console.log(itemsdos);
+}
+       // console.log(itemsdos);
                 var itemspre2 = new primitives.orgdiagram.ItemConfig({
                         id: datosgrap["CODIGO"][i],
                         parent: datosgrap["DEPENDENCIA"][i],
@@ -58,9 +59,6 @@ var itemsdos = [];
                     });
 
                 items.push(itemspre2);
-
-
-
             }
    // console.log(itemsdos);
            // console.log(items);
