@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="434f39a8-af3b-4429-ac6f-2161dec39d22" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/SiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/TwPcOrganigrama.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/TwPcOrganigrama.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpoffice/results/organigrama.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/phpoffice/results/organigrama.pptx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layouts/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/main.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/site/nomina.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/site/nomina.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/site.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/nomina.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/nomina.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/plantillaDatos.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/plantillaDatos.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +78,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/site/nomina.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
+            <state relative-caret-position="455">
               <caret line="680" column="23" lean-forward="true" selection-start-line="680" selection-start-column="23" selection-end-line="680" selection-end-column="23" />
               <folding>
                 <element signature="e#6#30#0#PHP" expanded="true" />
@@ -426,12 +418,12 @@
       <workItem from="1558024293142" duration="77442000" />
       <workItem from="1558458448868" duration="27908000" />
       <workItem from="1559010507744" duration="13852000" />
-      <workItem from="1559150952674" duration="67793000" />
+      <workItem from="1559150952674" duration="67958000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218876000" />
+    <option name="totallyTimeSpent" value="219041000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -651,7 +643,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/site/nomina.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
+        <state relative-caret-position="455">
           <caret line="680" column="23" lean-forward="true" selection-start-line="680" selection-start-column="23" selection-end-line="680" selection-end-column="23" />
           <folding>
             <element signature="e#6#30#0#PHP" expanded="true" />
