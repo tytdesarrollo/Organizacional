@@ -41,7 +41,7 @@ $session = Yii::$app->session;
 			<div class="pull-right">
 
 				<div class="content__icon-menu__aux">
-					<?= Html::a('<i class="material-icons icon__24">&#xE88A;</i>', ['site/principal'], ['class' => 'menu-trigger']) ?>
+					<?= Html::a('<i class="material-icons icon__24">&#xE88A;</i>', ['site/nomina'], ['class' => 'menu-trigger']) ?>
 				</div>
 
 				<!-- MENÚ MODAL MOBILE -->
@@ -634,6 +634,6 @@ $session = Yii::$app->session;
 
 		$(document).on("mouseup", function(){
 			if(!madSelectHover) $(".mad-select-drop").removeClass("show");
-		});		
+		});
 	}
 </script>

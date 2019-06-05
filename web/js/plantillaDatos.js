@@ -37,7 +37,7 @@ if(getempleadosel=="empshow"){
                         hasSelectorCheckbox: false,
                         title: datosgrap["AREA"][i],
                         description: "",
-                        groupTitle: "GRUPO " + datosgrap["NIVEL"][i],
+                        groupTitle: "NIVEL " + datosgrap["NIVEL"][i],
                         groupTitleColor: "#1c254b",
                         itemTitleColor: "#37589e",
                         email: "",
