@@ -72,15 +72,15 @@ function getTemplate(items){
     if(getempleadosel=="empshow") {
 
         //TAMANO DE CUADROS
-        result.itemSize = new primitives.common.Size(212, 255);
+        result.itemSize = new primitives.common.Size(200, 200);
         result.minimizedItemSize = new primitives.common.Size(10, 10);
         result.highlightPadding = new primitives.common.Thickness(2, 2, 2, 2);
         result.hasSelectorCheckbox = true;
 
         var itemTemplate = jQuery(
             '<div>'
-            + '<div name="titleBackground" class="bp-item bp-corner-all bp-title-frame" style="top: 5px; left: 12px; width: 187px; height: 20px;">'
-            + '<div name="title" class="bp-item bp-title" style="top: 3px; left: 6px; width: 180px; height: 18px; color:white;"></div>'
+            + '<div name="titleBackground" class="bp-item bp-corner-all bp-title-frame" style="top: 5px; left: 0px; width: 187px; height: 20px;">'
+            + '<div name="title" class="felipe bp-item" style="top: 3px; left: 2%; width: 180px; height: 18px; color:white;"></div>'
             + '</div>'
             + '<div class="bp-item" style="top: 50px; left: 12px; width: 216px; height: 22px; font-weight:bold; font-size: 12px;">Empleados registrados</div>'
             + '<div name="nose" class="felipe bp-item" style="top: 80px; left: -15px; width: 210px; height: 78px; font-size: 11px;">' + code + '</div>'
@@ -92,7 +92,7 @@ function getTemplate(items){
     }else{
 
         //TAMANO DE CUADROS
-        result.itemSize = new primitives.common.Size(150, 55);
+        result.itemSize = new primitives.common.Size(200, 80);
         result.minimizedItemSize = new primitives.common.Size(10, 10);
         result.highlightPadding = new primitives.common.Thickness(2, 2, 2, 2);
         result.hasSelectorCheckbox = true;
@@ -100,7 +100,7 @@ function getTemplate(items){
         var itemTemplate = jQuery(
             '<div>'
            // + '<div name="titleBackground" class="bp-item bp-corner-all bp-title-frame" style="top: 15px; left: 0px; width: 170px; height: 20px;">'
-            + '<div name="title" class="bp-item bp-title" style="top: 30%; left: 10%; width: 140px; height: 18px; color:#001072;"></div>'
+            + '<div name="title" class="felipe bp-item" style="top: 40%; left: 2%; width: 200px; height: 40px; color:#001072; font-size: 12px;"></div>'
             + '</div>'
             + '</div>').css({
             width: (result.itemSize.width + 10) + "px",

@@ -31,6 +31,7 @@ use app\models\TwPcInsertHoras;
 use app\models\TwPcArchivos;
 use app\models\TwPcEliminaArchivos;
 use app\models\TwPcOrganigrama;
+use app\models\TwPcOrganigramaWeb;
 
 class SiteController extends Controller
 { 	
@@ -42,13 +43,17 @@ class SiteController extends Controller
 
 	public function actionPrueba(){	
 		//$this->layout=false;
+        $cargenv=Yii::$app->request->get('cargenv');
+
 		$model = new TwPcOrganigrama;
-		$resultado = $model->procedimiento(1); //808
+		$resultado = $model->procedimiento($cargenv); //808
 
 		return $this->render('prueba',['resultado' => $resultado[0], 'cantidadNiveles' => $resultado[1]]);	
 	}
 
 	public function actionNomina(){
+
+        $model = new TwPcOrganigramaWeb;
 
         if(isset($_POST['empleadosel']) && isset($_POST['cargenv'])){
 
@@ -60,19 +65,42 @@ class SiteController extends Controller
 
         }elseif (isset($_GET['empleadosel']) && isset($_GET['cargenv'])){
 
-            return  $this->render('nomina');
+            $resultado = $model->procedimiento($_GET['cargenv']);
+
+            return  $this->render('nomina',['resultado' => $resultado[0], 'empleados' => $resultado[2]]);
 
         }elseif (isset($_GET['cargenv'])){
 
-            return  $this->render('nomina');
+            $resultado = $model->procedimiento($_GET['cargenv']);
+
+            return  $this->render('nomina',['resultado' => $resultado[0], 'empleados' => $resultado[2]]);
 
         }else{
 
-            return  $this->render('nomina');
+            $resultado = $model->procedimiento(1);
+
+            return  $this->render('nomina',['resultado' => $resultado[0], 'empleados' => $resultado[2]]);
         }
 
 
 	}
+
+    public function actionDescargarcppdf(){
+        //directorioRaiz
+        $directorioRaiz = dirname(__DIR__);
+        //Setup our new file path
+        $newFilePath = $directorioRaiz.'/phpoffice/results/organigrama.pptx';
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.presentationml.presentation');
+        header('Content-Disposition: attachment; filename='.basename('organigrama.pptx'));
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($newFilePath));
+        readfile($newFilePath);
+        return;
+
+    }
 	
 	public function actionNominainicio(){
 		return  $this->render('nominainicio');

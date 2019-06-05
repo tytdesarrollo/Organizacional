@@ -17,7 +17,7 @@ $this->title = 'Estructura Organizacional';
 		'@web/js/plantillaDatos.js',
 		['depends' => [\yii\web\JqueryAsset::className()]]
 	);
-
+/*
 	$e = [
 	        'NOMBRES' => array ('NOMBRE UNO','NOMBRE DOS','NOMBRE TRES','NOMBRE CUATRO','NOMBRE CINCO','NOMBRE SEIS','NOMBRE SIETE','NOMBRE OCHO','NOMBRE NUEVE','NOMBRE DIEZ','NOMBRE ONCE','NOMBRE DOCE','NOMBRE TRECE','NOMBRE CATORCE','NOMBRE QUINCE','NOMBRE DIECISEIS','NOMBRE DIECISIETE','NOMBRE DIECIOCHO','NOMBRE DIECINUEVE','NOMBRE VEINTE','NOMBRE VEINTIUNO','NOMBRE VEINTIDOS','NOMBRE VEINTITRES','NOMBRE VEINITCUATRO','NOMBRE VEINTICINCO','NOMBRE VEINITSEIS','NOMBRE VEINITISIETE','NOMBRE VEINITIOCHO','NOMBRE VEINITINUEVE','NOMBRE TREINTA','NOMBRE TREINTAUNO','NOMBRE TREINTACUATRO','NOMBRE TREINTACINCO','NOMBRE TREINTASEIS','NOMBRE TREINTASIETE','NOMBRE TREINTAOCHO','NOMBRE TREINTANUEVE','NOMBRE CUARENTA','NOMBRE CUARENTAUNO','NOMBRE CUARENTADOS','NOMBRE CUARENTATRES','NOMBRE CUARTENTACUATRO','NOMBRE CUARENTACINCO','NOMBRE CUARENTASEIS','NOMBRE CUARENTASIETE'),
             'CARGO' => array ('001','001','003','005','001','001','002','003','009','002','011','008','007','008','012','011','020','020','021','019','005','011','023','024','021','004','030','030','030','026','026','014','018','018','017','007','005','023','014','014','012','011','010','010','011')
@@ -29,6 +29,18 @@ $this->title = 'Estructura Organizacional';
     'CODIGO' => array('001','002','003','004','005','006','007','008','009','010','011','012','013','014','015','016','017','018','019','020','021','022','023','024','025','026','027','028','029','030'),
     'DEPENDENCIA' => array('0','001','001','002','002','002','002','001','001','001','010','010','010','010','001','020','020','020','020','001','001','021','021','021','030','029','017','029','001','001')
     ];
+*/
+$e = [
+    'NOMBRES' => $empleados["NOMBRE"],
+    'CARGO' => $empleados["COD_ESTRUCTURA"]
+];
+$c = [
+    'AREA'=> $resultado["NOM_OCUP"],
+    'NIVEL'=> $resultado["GRUPO_SALARIAL"],
+    'CODIGO' => $resultado["COD_ESTRUCTURA"],
+    'DEPENDENCIA' => $resultado["COD_EST_SUP"]
+];
+
 //var_dump($c);
 ?>
 
@@ -39,7 +51,7 @@ $this->title = 'Estructura Organizacional';
 				<a href="#" id="btn-Organigram" class="btn btn-success btn-sm "  data-toggle="modal" data-target="#cargosModal"">
 					<img src="../web/img/organigrama-icon.svg" alt=""><span class="text-span">Organigrama</span>
 				</a>
-				<a href="#" class="btn btn-success btn-sm download-pdf">
+				<a href="#" id="btn-Dowload" class="btn btn-success btn-sm" onclick="Downloadpptx()" >
 					<img src="../web/img/excel-download.svg" alt=""><span class="text-span">Descargar</span>
 				</a>
 			</div>
@@ -633,9 +645,7 @@ $this->title = 'Estructura Organizacional';
 
                 },
               /*  error: function(result) {
-
                     swal("Ops!", "Parece que tuvimos un problema al crear el organigrama, por favor reportalo con el administrador para darle solución. Gracias!", "error");
-
                 }*/
             });
             }else{
@@ -652,7 +662,50 @@ $this->title = 'Estructura Organizacional';
         }
 
         var getempleadosel = getParameterByName('empleadosel');
+        var getcargenv = getParameterByName('cargenv');
 
-      // console.log(getempleadosel);
+        if(getcargenv.length == 0){
+            getcargenv = 1;
+        }
+
+        function Downloadpptx(){
+
+                $.ajax({
+                    cache: false,
+                    type: 'POST',
+                    url: '<?php echo Url::toRoute(['site/prueba', 'cargenv' => '']); ?>'+getcargenv,
+                    //data: $("#compro-form").serialize(),
+
+                    success: function(data){
+
+                        setTimeout(function(){
+                            //la ruta del archivo a descagar
+                            var descargarForm = '<?= Url::toRoute(['site/descargarcppdf']); ?>';
+
+                            //cabecera de la ruta dada
+                            var http = new XMLHttpRequest();
+                            http.open('HEAD', descargarForm, false);
+                            http.send();
+                            console.log(http);
+
+                            // si el estado es 404 (no existe o no encontrado)
+                            if (http.status == 404) {
+                                //mensaje de error
+                                swal("Error en la descarga","No se encuentra el archivo, favor comunicar con el administrador.","error");
+                            }else{
+                                //se descarga el archivo
+                                window.location.href = descargarForm;
+                                //swal("Descarga en progreso","El archivo ha comenzado a descargarse, revisa en tu carpeta de descargas.","success");
+                            }
+                        }, 1000);
+
+                    },
+                      error: function(result) {
+                          swal("Ops!", "Parece que tuvimos un problema al crear el organigrama, por favor reportalo con el administrador para darle solución. Gracias!", "error");
+                      }
+                });
+
+
+        }
 
 </script>
