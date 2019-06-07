@@ -100,7 +100,7 @@ function getTemplate(items){
         var itemTemplate = jQuery(
             '<div>'
            // + '<div name="titleBackground" class="bp-item bp-corner-all bp-title-frame" style="top: 15px; left: 0px; width: 170px; height: 20px;">'
-            + '<div name="title" class="felipe bp-item" style="top: 40%; left: 2%; width: 200px; height: 40px; color:#001072; font-size: 12px;"></div>'
+            + '<div name="title" class="felipe bp-item" style="top: 30%; left: 2%; width: 200px; height: 40px; color:#001072; font-size: 12px;"></div>'
             + '</div>'
             + '</div>').css({
             width: (result.itemSize.width + 10) + "px",

@@ -26,7 +26,7 @@ $arrayNvlPorc = $cantidadNiveles;
 
 $c = [
     'AREA'=> $resultado["NOM_OCUP"],
-    'NIVEL'=> $resultado["NIVEL"],
+    'NIVEL'=> $resultado["GRUPO_SALARIAL"],
     'CODIGO' => $resultado["COD_ESTRUCTURA"],
     'DEPENDENCIA' => $resultado["COD_EST_SUP"]
 ];
