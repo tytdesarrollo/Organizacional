@@ -66,20 +66,23 @@ class SiteController extends Controller
         }elseif (isset($_GET['empleadosel']) && isset($_GET['cargenv'])){
 
             $resultado = $model->procedimiento($_GET['cargenv']);
+            $resultadofijo = $model->procedimiento(0);
 
-            return  $this->render('nomina',['resultado' => $resultado[0], 'empleados' => $resultado[2]]);
+            return  $this->render('nomina',['resultado' => $resultado[0], 'empleados' => $resultado[2], 'resultadofijo' => $resultadofijo[0]]);
 
         }elseif (isset($_GET['cargenv'])){
 
             $resultado = $model->procedimiento($_GET['cargenv']);
+            $resultadofijo = $model->procedimiento(0);
 
-            return  $this->render('nomina',['resultado' => $resultado[0], 'empleados' => $resultado[2]]);
+            return  $this->render('nomina',['resultado' => $resultado[0], 'empleados' => $resultado[2], 'resultadofijo' => $resultadofijo[0]]);
 
         }else{
 
-            $resultado = $model->procedimiento(1);
+            $resultado = $model->procedimiento(0);
+            $resultadofijo = $model->procedimiento(0);
 
-            return  $this->render('nomina',['resultado' => $resultado[0], 'empleados' => $resultado[2]]);
+            return  $this->render('nomina',['resultado' => $resultado[0], 'empleados' => $resultado[2], 'resultadofijo' => $resultadofijo[0]]);
         }
 
 
@@ -89,10 +92,12 @@ class SiteController extends Controller
         //directorioRaiz
         $directorioRaiz = dirname(__DIR__);
         //Setup our new file path
-        $newFilePath = $directorioRaiz.'/phpoffice/results/organigrama.pptx';
+       // $newFilePath = $directorioRaiz.'/phpoffice/results/organigrama.pptx';
+        $newFilePath = $directorioRaiz.'/phpoffice/results/PowerOrganigrama.pptx';
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.presentationml.presentation');
-        header('Content-Disposition: attachment; filename='.basename('organigrama.pptx'));
+       // header('Content-Disposition: attachment; filename='.basename('organigrama.pptx'));
+        header('Content-Disposition: attachment; filename='.basename('PowerOrganigrama.pptx'));
         header('Expires: 0');
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
