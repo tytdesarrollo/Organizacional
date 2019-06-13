@@ -47,8 +47,9 @@ class SiteController extends Controller
 
 		$model = new TwPcOrganigrama;
 		$resultado = $model->procedimiento($cargenv); //808
+		//$resultado = $model->procedimiento(1); //808
 
-		return $this->render('prueba',['resultado' => $resultado[0], 'cantidadNiveles' => $resultado[1]]);	
+		return $this->render('prueba',['resultado' => $resultado[0], 'cantidadNiveles' => $resultado[1], 'cantidadGrupos' => $resultado[2]]);
 	}
 
 	public function actionNomina(){
@@ -92,12 +93,12 @@ class SiteController extends Controller
         //directorioRaiz
         $directorioRaiz = dirname(__DIR__);
         //Setup our new file path
-       // $newFilePath = $directorioRaiz.'/phpoffice/results/organigrama.pptx';
-        $newFilePath = $directorioRaiz.'/phpoffice/results/PowerOrganigrama.pptx';
+        $newFilePath = $directorioRaiz.'/phpoffice/results/organigrama.pptx';
+       // $newFilePath = $directorioRaiz.'/phpoffice/results/PowerOrganigrama.pptx';
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.presentationml.presentation');
-       // header('Content-Disposition: attachment; filename='.basename('organigrama.pptx'));
-        header('Content-Disposition: attachment; filename='.basename('PowerOrganigrama.pptx'));
+        header('Content-Disposition: attachment; filename='.basename('organigrama.pptx'));
+       // header('Content-Disposition: attachment; filename='.basename('PowerOrganigrama.pptx'));
         header('Expires: 0');
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
