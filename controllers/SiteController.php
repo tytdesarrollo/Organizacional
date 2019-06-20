@@ -44,10 +44,13 @@ class SiteController extends Controller
 	public function actionPrueba(){	
 		//$this->layout=false;
         $cargenv=Yii::$app->request->get('cargenv');
-
+        if(empty($cargenv)){
+            $cargenv=0;
+        }
 		$model = new TwPcOrganigrama;
-		//$resultado = $model->procedimiento($cargenv); //808
-		$resultado = $model->procedimiento(1); //808
+
+		$resultado = $model->procedimiento($cargenv); //808
+		//$resultado = $model->procedimiento(773); //808
 
 		return $this->render('prueba',['resultado' => $resultado[0], 'cantidadNiveles' => $resultado[1], 'cantidadGrupos' => $resultado[2], 'cantidadCargos' => $resultado[3], 'cantidadEmpleados' => $resultado[4]]);
 	}
