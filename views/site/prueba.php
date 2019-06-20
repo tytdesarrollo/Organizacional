@@ -159,7 +159,7 @@ for ($y = 0; $y < count($result_sub); $y++) {
 //LINEA VERTICAL BORDE DERECHO
     $shape = $currentSlide->createLineShape($ancholinea, 30, $ancholinea, $altolinea)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(1);
 //LINEA VERTICAL IZQUIERDA NIVELES
-    $shape = $currentSlide->createLineShape(60, 30, 60, $altolinea)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(1);
+    $shape = $currentSlide->createLineShape(40, 30, 40, $altolinea)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(1);
 
 //POSICION TITULO
     $anchodmporc01 = floor($anchodm * 0.16);
@@ -188,14 +188,14 @@ for ($y = 0; $y < count($result_sub); $y++) {
 
 // primer cuadro de texto contenido 50, 30, 50, 880
         $shape = $currentSlide->createRichTextShape()
-            ->setHeight(60)
-            ->setWidth(60)
+            ->setHeight(40)
+            ->setWidth(40)
             ->setOffsetX(10)
             ->setOffsetY($resultdivtres);
         $shape->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
         $textRun = $shape->createTextRun($cniv[$i]);
         $textRun->getFont()->setBold(true)
-            ->setSize(18)
+            ->setSize(16)
             ->setColor(new Color('FF000000'));
 
         if ($i < $cantidadniv - 1) {
@@ -220,10 +220,15 @@ for ($y = 0; $y < count($result_sub); $y++) {
         $anchodmresult = $anchodm-$anchodmporc;
         $posicionsig = 140;
         $resultdivunoc = 70;
+        $resultdivunocalto = 70;
         $resultdivdosc = 70;
+        $resultdivdoscalto = 70;
         $resultdivtresc = 70;
+        $resultdivtrescalto = 70;
         $resultdivcuatroc = 70;
+        $resultdivcuatrocalto = 70;
         $resultdivcincoc = 70;
+        $resultdivcincocalto = 70;
 
 
 if($i==0){
@@ -288,7 +293,7 @@ if($i==0){
 //LINEA VERTICAL BORDE DERECHO
                 $shape = $currentSlide->createLineShape($ancholinea, 30, $ancholinea, $altolinea)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(1);
 //LINEA VERTICAL IZQUIERDA NIVELES
-                $shape = $currentSlide->createLineShape(60, 30, 60, $altolinea)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(1);
+                $shape = $currentSlide->createLineShape(40, 30, 40, $altolinea)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(1);
 
 //POSICION TITULO
                 $anchodmporc01 = floor($anchodm * 0.16);
@@ -317,8 +322,8 @@ if($i==0){
 
 // primer cuadro de texto contenido 50, 30, 50, 880
                     $shape = $currentSlide->createRichTextShape()
-                        ->setHeight(60)
-                        ->setWidth(60)
+                        ->setHeight(40)
+                        ->setWidth(40)
                         ->setOffsetX(10)
                         ->setOffsetY($resultdivtres);
                     $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
@@ -328,7 +333,7 @@ if($i==0){
                         $textRun = $shape->createTextRun($cniv[$h]);
                     }
                     $textRun->getFont()->setBold(true)
-                        ->setSize(18)
+                        ->setSize(16)
                         ->setColor( new Color( 'FF000000' ) );
 
                     if ($h < $cantidadniv-1){
@@ -350,7 +355,7 @@ if($i==0){
                 $shape = $currentSlide->createRichTextShape()
                     ->setHeight(80)
                     ->setWidth(130)
-                    ->setOffsetX($resultdivunoc)
+                    ->setOffsetX($anchotitulo)
                     ->setOffsetY($cnivposic[$clave]);
                 if($j['MODELO'][$i]!="MODELO"){
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
@@ -363,17 +368,17 @@ if($i==0){
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
 
-                $posicenx[] = $resultdivunoc;
+                $posicenxalt[] = $resultdivunocalto;
                 $posiceny[] = $cnivposic[$clave];
-                $resultdivunoc = floor($posicionsig+$resultdivunoc);
+                $resultdivunocalto = floor($posicionsig+$resultdivunocalto);
                 break;
             case "II":
                 // primer cuadro de texto contenido
                 $shape = $currentSlide->createRichTextShape()
                     ->setHeight(80)
                     ->setWidth(130)
-                    ->setOffsetX($resultdivdosc)
-                    ->setOffsetY($cnivposic[$clave]);
+                    ->setOffsetX($anchotitulo)
+                    ->setOffsetY($cnivposic[$clave]-30);
                 if($j['MODELO'][$i]!="MODELO"){
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }else{
@@ -385,18 +390,18 @@ if($i==0){
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
 
-                $posicenx[] = $resultdivdosc;
+                $posicenxalt[] = $resultdivdoscalto;
                 $posiceny[] = $cnivposic[$clave];
 
-                $resultdivdosc = floor($posicionsig+$resultdivdosc);
+                $resultdivdoscalto = floor($posicionsig+$resultdivdoscalto);
                 break;
             case "III":
                 // primer cuadro de texto contenido
                 $shape = $currentSlide->createRichTextShape()
                     ->setHeight(80)
                     ->setWidth(130)
-                    ->setOffsetX($resultdivtresc)
-                    ->setOffsetY($cnivposic[$clave]);
+                    ->setOffsetX($anchotitulo)
+                    ->setOffsetY($cnivposic[$clave]-30);
                 if($j['MODELO'][$i]!="MODELO"){
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }else{
@@ -408,17 +413,17 @@ if($i==0){
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
 
-                $posicenx[] = $resultdivtresc;
+                $posicenxalt[] = $resultdivtrescalto;
                 $posiceny[] = $cnivposic[$clave];
-                $resultdivtresc = floor($posicionsig+$resultdivtresc);
+                $resultdivtrescalto = floor($posicionsig+$resultdivtrescalto);
                 break;
             case "IV":
                 // primer cuadro de texto contenido
                 $shape = $currentSlide->createRichTextShape()
                     ->setHeight(80)
                     ->setWidth(130)
-                    ->setOffsetX($resultdivcuatroc)
-                    ->setOffsetY($cnivposic[$clave]);
+                    ->setOffsetX($anchotitulo)
+                    ->setOffsetY($cnivposic[$clave]-30);
                 if($j['MODELO'][$i]!="MODELO"){
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }else{
@@ -430,17 +435,17 @@ if($i==0){
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
 
-                $posicenx[] = $resultdivcuatroc;
+                $posicenxalt[] = $resultdivcuatrocalto;
                 $posiceny[] = $cnivposic[$clave];
-                $resultdivcuatroc = floor($posicionsig+$resultdivcuatroc);
+                $resultdivcuatrocalto = floor($posicionsig+$resultdivcuatrocalto);
                 break;
             case "V":
                 // primer cuadro de texto contenido
                 $shape = $currentSlide->createRichTextShape()
                     ->setHeight(80)
                     ->setWidth(130)
-                    ->setOffsetX($resultdivcincoc)
-                    ->setOffsetY($cnivposic[$clave]-20);
+                    ->setOffsetX($anchotitulo)
+                    ->setOffsetY($cnivposic[$clave]-30);
                 if($j['MODELO'][$i]!="MODELO"){
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }else{
@@ -452,16 +457,16 @@ if($i==0){
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
 
-                $posicenx[] = $resultdivcincoc;
+                $posicenxalt[] = $resultdivcincocalto;
                 $posiceny[] = $cnivposic[$clave];
-                $resultdivcincoc = floor($posicionsig+$resultdivcincoc);
+                $resultdivcincocalto = floor($posicionsig+$resultdivcincocalto);
                 break;
             case NULL:
                 // primer cuadro de texto contenido
                 $shape = $currentSlide->createRichTextShape()
                     ->setHeight(80)
                     ->setWidth(130)
-                    ->setOffsetX($resultdivcincoc)
+                    ->setOffsetX($anchotitulo)
                     ->setOffsetY($cnivposic[$clave]+80);
                 if($j['MODELO'][$i]!="MODELO"){
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
@@ -474,9 +479,9 @@ if($i==0){
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
 
-                $posicenx[] = $resultdivcincoc;
+                $posicenxalt[] = $resultdivcincocalto;
                 $posiceny[] = $cnivposic[$clave];
-                $resultdivcincoc = floor($posicionsig+$resultdivcincoc);
+                $resultdivcincocalto = floor($posicionsig+$resultdivcincocalto);
                 break;
         }
 
@@ -551,8 +556,11 @@ if($i==0){
                         $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
                         $textRun = $shape->createTextRun($j['AREA'][$m]);
                         $textRun->getFont()->setBold(true)
-                            ->setSize(9)
+                            ->setSize(7)
                             ->setColor( new Color( 'FF000000' ) );
+                        $shape->createParagraph()->createTextRun('Showasdasdsa a family slide show')->getFont()->setBold(true)
+                            ->setSize(7)
+                            ->setColor( new Color( Color::COLOR_BLUE ) );
 
                         $posicenx[] = $resultdivtresc;
                         $posiceny[] = $cnivposicsub[$clave];

@@ -5,3 +5,4 @@ protected/runtime/*
 protected/data/*.db
 themes/classic/views/
 phpoffice/results/organigrama.pptx
+phpoffice/results/~$PowerOrganigrama.pptx
