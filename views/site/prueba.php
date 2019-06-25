@@ -349,8 +349,11 @@ if($i==0){
 
             }
 
+            $validapadre = 0;
+
         switch ($j['GRUPO_SALARIAL'][$i]) {
             case "I":
+                $validapadre = 1;
                 // primer cuadro de texto contenido
                 $shape = $currentSlide->createRichTextShape()
                     ->setHeight(80)
@@ -368,11 +371,15 @@ if($i==0){
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
 
+                //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                $shape = $currentSlide->createLineShape(60, $cnivposic[$clave]+40, $anchotitulo, $cnivposic[$clave]+40)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+
                 $posicenxalt[] = $resultdivunocalto;
-                $posiceny[] = $cnivposic[$clave];
+                $posicenypad = $cnivposic[$clave]+40;
                 $resultdivunocalto = floor($posicionsig+$resultdivunocalto);
                 break;
             case "II":
+                $validapadre = 1;
                 // primer cuadro de texto contenido
                 $shape = $currentSlide->createRichTextShape()
                     ->setHeight(80)
@@ -390,12 +397,16 @@ if($i==0){
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
 
+                //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                $shape = $currentSlide->createLineShape(60, $cnivposic[$clave]+20, $anchotitulo, $cnivposic[$clave]+20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+
                 $posicenxalt[] = $resultdivdoscalto;
-                $posiceny[] = $cnivposic[$clave];
+                $posicenypad = $cnivposic[$clave]+20;
 
                 $resultdivdoscalto = floor($posicionsig+$resultdivdoscalto);
                 break;
             case "III":
+                $validapadre = 1;
                 // primer cuadro de texto contenido
                 $shape = $currentSlide->createRichTextShape()
                     ->setHeight(80)
@@ -413,11 +424,15 @@ if($i==0){
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
 
+                //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                $shape = $currentSlide->createLineShape(60, $cnivposic[$clave]+20, $anchotitulo, $cnivposic[$clave]+20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+
                 $posicenxalt[] = $resultdivtrescalto;
-                $posiceny[] = $cnivposic[$clave];
+                $posicenypad = $cnivposic[$clave]+20;
                 $resultdivtrescalto = floor($posicionsig+$resultdivtrescalto);
                 break;
             case "IV":
+                $validapadre = 1;
                 // primer cuadro de texto contenido
                 $shape = $currentSlide->createRichTextShape()
                     ->setHeight(80)
@@ -435,11 +450,15 @@ if($i==0){
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
 
+                //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                $shape = $currentSlide->createLineShape(60, $cnivposic[$clave]+20, $anchotitulo, $cnivposic[$clave]+20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+
                 $posicenxalt[] = $resultdivcuatrocalto;
-                $posiceny[] = $cnivposic[$clave];
+                $posicenypad = $cnivposic[$clave]+20;
                 $resultdivcuatrocalto = floor($posicionsig+$resultdivcuatrocalto);
                 break;
             case "V":
+                $validapadre = 1;
                 // primer cuadro de texto contenido
                 $shape = $currentSlide->createRichTextShape()
                     ->setHeight(80)
@@ -457,11 +476,15 @@ if($i==0){
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
 
+                //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                $shape = $currentSlide->createLineShape(60, $cnivposic[$clave]+20, $anchotitulo, $cnivposic[$clave]+20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+
                 $posicenxalt[] = $resultdivcincocalto;
-                $posiceny[] = $cnivposic[$clave];
+                $posicenypad = $cnivposic[$clave]+20;
                 $resultdivcincocalto = floor($posicionsig+$resultdivcincocalto);
                 break;
             case NULL:
+                $validapadre = 1;
                 // primer cuadro de texto contenido
                 $shape = $currentSlide->createRichTextShape()
                     ->setHeight(80)
@@ -514,9 +537,19 @@ if($i==0){
                             ->setSize(9)
                             ->setColor( new Color( 'FF000000' ) );
 
+                        //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                        $shape = $currentSlide->createLineShape($resultdivunoc+60, $cnivposicsub[$clave], $resultdivunoc+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+
                         $posicenx[] = $resultdivunoc;
-                        $posiceny[] = $cnivposicsub[$clave];
+                        $posicenyhij = $cnivposicsub[$clave]-20;
                         $resultdivunoc = floor($posicionsig+$resultdivunoc);
+
+                        $ultpos = array_pop($posicenx);
+
+//LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                        $shape = $currentSlide->createLineShape(60, $cnivposicsub[$clave]-20, $ultpos+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+                      //  $shape = $currentSlide->createLineShape(130, $cnivposicsub[$clave]-20, $anchotitulo+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(1);
+
                         break;
                     case "II":
                         // primer cuadro de texto contenido
@@ -536,10 +569,19 @@ if($i==0){
                             ->setSize(9)
                             ->setColor( new Color( 'FF000000' ) );
 
-                        $posicenx[] = $resultdivdosc;
-                        $posiceny[] = $cnivposicsub[$clave];
+                        //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                        $shape = $currentSlide->createLineShape($resultdivdosc+60, $cnivposicsub[$clave], $resultdivdosc+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
 
+                        $posicenx[] = $resultdivdosc;
+                        $posicenyhij = $cnivposicsub[$clave]-20;
                         $resultdivdosc = floor($posicionsig+$resultdivdosc);
+
+                        $ultpos = array_pop($posicenx);
+
+//LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                        $shape = $currentSlide->createLineShape(60, $cnivposicsub[$clave]-20, $ultpos+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+                       // $shape = $currentSlide->createLineShape(130, $cnivposicsub[$clave]-20, $anchotitulo+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(1);
+
                         break;
                     case "III":
                         // primer cuadro de texto contenido
@@ -562,9 +604,19 @@ if($i==0){
                             ->setSize(7)
                             ->setColor( new Color( Color::COLOR_BLUE ) );
 
+                        //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                        $shape = $currentSlide->createLineShape($resultdivtresc+60, $cnivposicsub[$clave], $resultdivtresc+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+
                         $posicenx[] = $resultdivtresc;
-                        $posiceny[] = $cnivposicsub[$clave];
+                        $posicenyhij = $cnivposicsub[$clave]-20;
                         $resultdivtresc = floor($posicionsig+$resultdivtresc);
+
+                        $ultpos = array_pop($posicenx);
+
+//LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                        $shape = $currentSlide->createLineShape(60, $cnivposicsub[$clave]-20, $ultpos+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+                       // $shape = $currentSlide->createLineShape(130, $cnivposicsub[$clave]-20, $anchotitulo+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(1);
+
                         break;
                     case "IV":
                         // primer cuadro de texto contenido
@@ -584,9 +636,19 @@ if($i==0){
                             ->setSize(9)
                             ->setColor( new Color( 'FF000000' ) );
 
+                        //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                        $shape = $currentSlide->createLineShape($resultdivcuatroc+60, $cnivposicsub[$clave], $resultdivcuatroc+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+
                         $posicenx[] = $resultdivcuatroc;
-                        $posiceny[] = $cnivposicsub[$clave];
+                        $posicenyhij = $cnivposicsub[$clave]-20;
                         $resultdivcuatroc = floor($posicionsig+$resultdivcuatroc);
+
+                        $ultpos = array_pop($posicenx);
+
+//LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                        $shape = $currentSlide->createLineShape(60, $cnivposicsub[$clave]-20, $ultpos+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+                        //$shape = $currentSlide->createLineShape(130, $cnivposicsub[$clave]-20, $anchotitulo+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(1);
+
                         break;
                     case "V":
                         // primer cuadro de texto contenido
@@ -606,9 +668,19 @@ if($i==0){
                             ->setSize(9)
                             ->setColor( new Color( 'FF000000' ) );
 
+                        //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                        $shape = $currentSlide->createLineShape($resultdivcincoc+60, $cnivposicsub[$clave]-20, $resultdivcincoc+60, $cnivposicsub[$clave]-40)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+
                         $posicenx[] = $resultdivcincoc;
-                        $posiceny[] = $cnivposicsub[$clave];
+                        $posicenyhij = $cnivposicsub[$clave]-40;
                         $resultdivcincoc = floor($posicionsig+$resultdivcincoc);
+
+                        $ultpos = array_pop($posicenx);
+
+//LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                        $shape = $currentSlide->createLineShape(60, $cnivposicsub[$clave]-40, $ultpos+60, $cnivposicsub[$clave]-40)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+                       // $shape = $currentSlide->createLineShape(130, $cnivposicsub[$clave]-40, $anchotitulo+60, $cnivposicsub[$clave]-40)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(1);
+
                         break;
                     case NULL:
                         // primer cuadro de texto contenido
@@ -628,16 +700,26 @@ if($i==0){
                             ->setSize(9)
                             ->setColor( new Color( 'FF000000' ) );
 
+                        //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                        $shape = $currentSlide->createLineShape($resultdivunoc+60, $cnivposicsub[$clave], $resultdivunoc+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+
                         $posicenx[] = $resultdivcincoc;
                         $posiceny[] = $cnivposic[$clave];
                         $resultdivcincoc = floor($posicionsig+$resultdivcincoc);
+
+                        $ultpos = array_pop($posicenx);
+
+//LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+                        $shape = $currentSlide->createLineShape(60, $cnivposicsub[$clave]-20, $ultpos+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
+
                         break;
                 }
+
             }
+
         }
-
-
-
+            //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
+            $shape = $currentSlide->createLineShape(60, $posicenyhij, 60, $posicenypad)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
         }
       /*  unset($j['AREA'][$i]);
         unset($j['GRUPO_SALARIAL'][$i]);
@@ -650,19 +732,9 @@ if($i==0){
         $j['DEPENDENCIA'][$i]="NADA";
 
     }
-    /*
-var_dump($c['AREA'][0]);
-unset($c['AREA'][0]);
-unset($c['GRUPO_SALARIAL'][0]);
-unset($c['CODIGO'][0]);
-unset($c['DEPENDENCIA'][0]);
-var_dump($c);
-*/
+
+
     //FIN DIAPO
-
-
-
-
 
 $oWriterPPTX = IOFactory::createWriter($objPHPPowerPoint, 'PowerPoint2007');
 $oWriterPPTX->save("../phpoffice/results/organigrama.pptx");
