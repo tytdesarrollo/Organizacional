@@ -370,6 +370,15 @@ if($i==0){
                 $textRun->getFont()->setBold(true)
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
+                if($empleadosel==1){
+                    for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
+                        if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$i]) {
+                            $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                ->setSize(7)
+                                ->setColor(new Color(Color::COLOR_BLUE));
+                        }
+                    }
+                }
 
                 //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
                 $shape = $currentSlide->createLineShape(60, $cnivposic[$clave]+40, $anchotitulo, $cnivposic[$clave]+40)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
@@ -396,6 +405,15 @@ if($i==0){
                 $textRun->getFont()->setBold(true)
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
+                if($empleadosel==1){
+                    for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
+                        if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$i]) {
+                            $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                ->setSize(7)
+                                ->setColor(new Color(Color::COLOR_BLUE));
+                        }
+                    }
+                }
 
                 //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
                 $shape = $currentSlide->createLineShape(60, $cnivposic[$clave]+20, $anchotitulo, $cnivposic[$clave]+20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
@@ -423,6 +441,15 @@ if($i==0){
                 $textRun->getFont()->setBold(true)
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
+                if($empleadosel==1){
+                    for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
+                        if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$i]) {
+                            $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                ->setSize(7)
+                                ->setColor(new Color(Color::COLOR_BLUE));
+                        }
+                    }
+                }
 
                 //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
                 $shape = $currentSlide->createLineShape(60, $cnivposic[$clave]+20, $anchotitulo, $cnivposic[$clave]+20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
@@ -449,6 +476,15 @@ if($i==0){
                 $textRun->getFont()->setBold(true)
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
+                if($empleadosel==1){
+                    for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
+                        if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$i]) {
+                            $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                ->setSize(7)
+                                ->setColor(new Color(Color::COLOR_BLUE));
+                        }
+                    }
+                }
 
                 //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
                 $shape = $currentSlide->createLineShape(60, $cnivposic[$clave]+20, $anchotitulo, $cnivposic[$clave]+20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
@@ -475,6 +511,15 @@ if($i==0){
                 $textRun->getFont()->setBold(true)
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
+                if($empleadosel==1){
+                    for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
+                        if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$i]) {
+                            $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                ->setSize(7)
+                                ->setColor(new Color(Color::COLOR_BLUE));
+                        }
+                    }
+                }
 
                 //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
                 $shape = $currentSlide->createLineShape(60, $cnivposic[$clave]+20, $anchotitulo, $cnivposic[$clave]+20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
@@ -501,6 +546,15 @@ if($i==0){
                 $textRun->getFont()->setBold(true)
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
+                if($empleadosel==1){
+                    for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
+                        if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$i]) {
+                            $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                ->setSize(7)
+                                ->setColor(new Color(Color::COLOR_BLUE));
+                        }
+                    }
+                }
 
                 $posicenxalt[] = $resultdivcincocalto;
                 $posiceny[] = $cnivposic[$clave];
@@ -534,9 +588,17 @@ if($i==0){
                         $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
                         $textRun = $shape->createTextRun($j['AREA'][$m]);
                         $textRun->getFont()->setBold(true)
-                            ->setSize(9)
+                            ->setSize(7)
                             ->setColor( new Color( 'FF000000' ) );
-
+                        if($empleadosel==1){
+                            for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
+                                if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$m]) {
+                                    $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                        ->setSize(7)
+                                        ->setColor(new Color(Color::COLOR_BLUE));
+                                }
+                            }
+                        }
                         //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
                         $shape = $currentSlide->createLineShape($resultdivunoc+60, $cnivposicsub[$clave], $resultdivunoc+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
 
@@ -566,9 +628,17 @@ if($i==0){
                         $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
                         $textRun = $shape->createTextRun($j['AREA'][$m]);
                         $textRun->getFont()->setBold(true)
-                            ->setSize(9)
+                            ->setSize(7)
                             ->setColor( new Color( 'FF000000' ) );
-
+                        if($empleadosel==1){
+                            for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
+                                if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$m]) {
+                                    $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                        ->setSize(7)
+                                        ->setColor(new Color(Color::COLOR_BLUE));
+                                }
+                            }
+                        }
                         //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
                         $shape = $currentSlide->createLineShape($resultdivdosc+60, $cnivposicsub[$clave], $resultdivdosc+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
 
@@ -600,10 +670,15 @@ if($i==0){
                         $textRun->getFont()->setBold(true)
                             ->setSize(7)
                             ->setColor( new Color( 'FF000000' ) );
-                        $shape->createParagraph()->createTextRun('Showasdasdsa a family slide show')->getFont()->setBold(true)
-                            ->setSize(7)
-                            ->setColor( new Color( Color::COLOR_BLUE ) );
-
+                        if($empleadosel==1){
+                            for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
+                                if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$m]) {
+                                    $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                        ->setSize(7)
+                                        ->setColor(new Color(Color::COLOR_BLUE));
+                                }
+                            }
+                        }
                         //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
                         $shape = $currentSlide->createLineShape($resultdivtresc+60, $cnivposicsub[$clave], $resultdivtresc+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
 
@@ -633,9 +708,17 @@ if($i==0){
                         $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
                         $textRun = $shape->createTextRun($j['AREA'][$m]);
                         $textRun->getFont()->setBold(true)
-                            ->setSize(9)
+                            ->setSize(7)
                             ->setColor( new Color( 'FF000000' ) );
-
+                        if($empleadosel==1){
+                            for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
+                                if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$m]) {
+                                    $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                        ->setSize(7)
+                                        ->setColor(new Color(Color::COLOR_BLUE));
+                                }
+                            }
+                        }
                         //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
                         $shape = $currentSlide->createLineShape($resultdivcuatroc+60, $cnivposicsub[$clave], $resultdivcuatroc+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
 
@@ -665,9 +748,17 @@ if($i==0){
                         $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
                         $textRun = $shape->createTextRun($j['AREA'][$m]);
                         $textRun->getFont()->setBold(true)
-                            ->setSize(9)
+                            ->setSize(7)
                             ->setColor( new Color( 'FF000000' ) );
-
+                        if($empleadosel==1){
+                            for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
+                                if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$m]) {
+                                    $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                        ->setSize(7)
+                                        ->setColor(new Color(Color::COLOR_BLUE));
+                                }
+                            }
+                        }
                         //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
                         $shape = $currentSlide->createLineShape($resultdivcincoc+60, $cnivposicsub[$clave]-20, $resultdivcincoc+60, $cnivposicsub[$clave]-40)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
 
@@ -697,9 +788,17 @@ if($i==0){
                         $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
                         $textRun = $shape->createTextRun($j['AREA'][$m]);
                         $textRun->getFont()->setBold(true)
-                            ->setSize(9)
+                            ->setSize(7)
                             ->setColor( new Color( 'FF000000' ) );
-
+                        if($empleadosel==1){
+                            for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
+                                if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$m]) {
+                                    $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                        ->setSize(7)
+                                        ->setColor(new Color(Color::COLOR_BLUE));
+                                }
+                            }
+                        }
                         //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
                         $shape = $currentSlide->createLineShape($resultdivunoc+60, $cnivposicsub[$clave], $resultdivunoc+60, $cnivposicsub[$clave]-20)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
 

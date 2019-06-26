@@ -84,7 +84,11 @@ if(count($c["AREA"]) <= 1){
     array_push($g["CODIGO"], "");
     array_push($g["DEPENDENCIA"], $g["CODIGO"][0]);
 }
-
+if(isset($_GET['empleadosel'])){
+    $empleadosel= 1;
+}else{
+    $empleadosel= 0;
+}
 // $pru = utf8_encode($c["AREA"]);
 //var_dump(json_encode($f));
 //var_dump($g);
@@ -720,7 +724,7 @@ if(count($c["AREA"]) <= 1){
             $.ajax({
                 cache: false,
                 type: 'POST',
-                url: '<?php echo Url::toRoute(['site/prueba', 'cargenv' => '']); ?>'+getcargenv,
+                url: '<?php echo Url::toRoute(['site/prueba','empleadosel' => $empleadosel, 'cargenv' => '']); ?>'+getcargenv,
                 //data: $("#compro-form").serialize(),
 
                 success: function(data){

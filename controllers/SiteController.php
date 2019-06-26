@@ -43,7 +43,9 @@ class SiteController extends Controller
 
 	public function actionPrueba(){	
 		//$this->layout=false;
+        $empleadosel=Yii::$app->request->get('empleadosel');
         $cargenv=Yii::$app->request->get('cargenv');
+
         if(empty($cargenv)){
             $cargenv=0;
         }
@@ -52,7 +54,7 @@ class SiteController extends Controller
 		$resultado = $model->procedimiento($cargenv); //808
 		//$resultado = $model->procedimiento(773); //808
 
-		return $this->render('prueba',['resultado' => $resultado[0], 'cantidadNiveles' => $resultado[1], 'cantidadGrupos' => $resultado[2], 'cantidadCargos' => $resultado[3], 'cantidadEmpleados' => $resultado[4]]);
+		return $this->render('prueba',['resultado' => $resultado[0], 'cantidadNiveles' => $resultado[1], 'cantidadGrupos' => $resultado[2], 'cantidadCargos' => $resultado[3], 'cantidadEmpleados' => $resultado[4], 'empleadosel' => $empleadosel]);
 	}
 
 	public function actionNomina(){
