@@ -23,29 +23,9 @@ $objPHPPowerPoint = new PhpPresentation();
 
 $arrayNvlPorc = $cantidadGrupos;
 
-
-
-//CICLO PARA PINTAR LAS LINEAS
-/*
-for ($n = 0; $n < count($c['GRUPO_SALARIAL']); $n++) {
-
-    for($u = 0; $u < count($c['GRUPO_SALARIAL']); $u++){
-        if($c['CODIGO'][$n] == $c['DEPENDENCIA'][$u]){
-            $shape = $currentSlide->createLineShape($posicenx[$n], $posiceny[$n], $posicenx[$u], $posiceny[$u])->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setLineWidth(1);
-        }
-    }
-
-  //  var_dump($posicenx[$i]);
-    //var_dump($cnivposic[$clave]);
-
-}*/
-
-/*
-//SE CREAN LAS LINEAS HASTA LA PRIMER UNIDAD
-$shape = $currentSlide->createLineShape(475, 110, 475, 200)->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setLineWidth(1);
-$shape = $currentSlide->createLineShape(80, 200, 475, 200)->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setLineWidth(1);
-*/
-//$result_sub=array();
+$paginador = 2;
+$contempldir = 0;
+$contemplservc = 0;
 
 for ($i = 0; $i < count($resultado['SUB']); $i++) {
     if($resultado['SUB'][$i]!=0){
@@ -73,7 +53,8 @@ for ($y = 0; $y < count($result_sub); $y++) {
             'CODIGO' => $resultado["COD_ESTRUCTURA"],
             'DEPENDENCIA' => $resultado["COD_EST_SUP"],
             'SUB' => $resultado["SUB"],
-            'MODELO' => $resultado["NOM_TIP_OCUP"]
+            'MODELO' => $resultado["NOM_TIP_OCUP"],
+            'NOM_OCUP_SUP' => $resultado["NOM_OCUP_SUP"]
         ];
 
        // var_dump($c);
@@ -168,14 +149,25 @@ for ($y = 0; $y < count($result_sub); $y++) {
 // ASIGNAR POSICIONES DEL RECTANGULO
     $shape = $currentSlide->createRichTextShape()
         ->setHeight(20)
-        ->setWidth(300)
-        ->setOffsetX($anchotitulo)
+        ->setWidth(800)
+        ->setOffsetX($anchotitulo-300)
         ->setOffsetY(4);
     $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-    $textRun = $shape->createTextRun( 'ORGANIGRAMA JERÁRQUICOS');
+    $textRun = $shape->createTextRun( 'ORGANIGRAMA JERÁRQUICOS '.$c['NOM_OCUP_SUP'][0]);
     $textRun->getFont()->setBold(true)
         ->setSize(16)
         ->setColor( new Color( 'FF000000' ) );
+
+    $shape = $currentSlide->createRichTextShape()
+        ->setHeight(40)
+        ->setWidth(120)
+        ->setOffsetX(1360)
+        ->setOffsetY(1348);
+    $shape->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+    $textRun = $shape->createTextRun("Diapositiva #1");
+    $textRun->getFont()->setBold(true)
+        ->setSize(11)
+        ->setColor(new Color('FF000000'));
 
 // LOGICA POSICIONES Y LINEAS
     $resultdivuno = floor($altodm/$cantidadniv);
@@ -238,7 +230,8 @@ if($i==0){
         'CODIGO' => $resultado["COD_ESTRUCTURA"],
         'DEPENDENCIA' => $resultado["COD_EST_SUP"],
         'SUB' => $resultado["SUB"],
-        'MODELO' => $resultado["NOM_TIP_OCUP"]
+        'MODELO' => $resultado["NOM_TIP_OCUP"],
+        'NOM_OCUP_SUP' => $resultado["NOM_OCUP_SUP"],
     ];
 }else{
     $j = [
@@ -247,7 +240,8 @@ if($i==0){
         'CODIGO' => $j["CODIGO"],
         'DEPENDENCIA' => $j["DEPENDENCIA"],
         'SUB' => $j["SUB"],
-        'MODELO' => $j["MODELO"]
+        'MODELO' => $j["MODELO"],
+        'NOM_OCUP_SUP' => $j["NOM_OCUP_SUP"]
     ];
 }
 
@@ -261,6 +255,16 @@ if($i==0){
                 //CREA NUEVA DIAPOSITIVA
                 $currentSlide = $objPHPPowerPoint->createSlide();
 
+                $shape = $currentSlide->createRichTextShape()
+                    ->setHeight(40)
+                    ->setWidth(120)
+                    ->setOffsetX(1360)
+                    ->setOffsetY(1348);
+                $shape->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+                $textRun = $shape->createTextRun("Diapositiva #".$paginador++);
+                $textRun->getFont()->setBold(true)
+                    ->setSize(11)
+                    ->setColor(new Color('FF000000'));
 
 // CREAR LOGO DE LA EMPRESA
                 $anchologo = $anchodm-200;
@@ -302,14 +306,15 @@ if($i==0){
 // ASIGNAR POSICIONES DEL RECTANGULO
                 $shape = $currentSlide->createRichTextShape()
                     ->setHeight(20)
-                    ->setWidth(300)
-                    ->setOffsetX($anchotitulo)
+                    ->setWidth(800)
+                    ->setOffsetX($anchotitulo-300)
                     ->setOffsetY(4);
                 $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-                $textRun = $shape->createTextRun( 'ORGANIGRAMA JERÁRQUICOS');
+                $textRun = $shape->createTextRun( 'ORGANIGRAMA JERÁRQUICO '.$j['NOM_OCUP_SUP'][$i]);
                 $textRun->getFont()->setBold(true)
                     ->setSize(16)
                     ->setColor( new Color( 'FF000000' ) );
+
 
 // LOGICA POSICIONES Y LINEAS
                 $resultdivuno = floor($altodm/$cantidadniv);
@@ -361,7 +366,7 @@ if($i==0){
                     ->setOffsetX($anchotitulo)
                     ->setOffsetY($cnivposic[$clave]);
                 if($j['MODELO'][$i]!="MODELO"){
-                    $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
+                    $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_DASH)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }else{
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }
@@ -380,6 +385,14 @@ if($i==0){
                     }
                 }
 
+                    for ($w = 0; $w < count($cantidadEmpleados['COD_DEPENDENCIA']); $w++) {
+                        if ($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$i] && $j['MODELO'][$i] == "MODELO") {
+                            $contempldir++;
+                        }elseif($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$i] && $j['MODELO'][$i] != "MODELO"){
+                            $contemplservc++;
+                        }
+                    }
+
                 //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
                 $shape = $currentSlide->createLineShape(60, $cnivposic[$clave]+40, $anchotitulo, $cnivposic[$clave]+40)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
 
@@ -396,7 +409,7 @@ if($i==0){
                     ->setOffsetX($anchotitulo)
                     ->setOffsetY($cnivposic[$clave]-30);
                 if($j['MODELO'][$i]!="MODELO"){
-                    $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
+                    $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_DASH)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }else{
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }
@@ -412,6 +425,14 @@ if($i==0){
                                 ->setSize(7)
                                 ->setColor(new Color(Color::COLOR_BLUE));
                         }
+                    }
+                }
+
+                for ($w = 0; $w < count($cantidadEmpleados['COD_DEPENDENCIA']); $w++) {
+                    if ($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$i] && $j['MODELO'][$i] == "MODELO") {
+                        $contempldir++;
+                    }elseif($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$i] && $j['MODELO'][$i] != "MODELO"){
+                        $contemplservc++;
                     }
                 }
 
@@ -432,7 +453,7 @@ if($i==0){
                     ->setOffsetX($anchotitulo)
                     ->setOffsetY($cnivposic[$clave]-30);
                 if($j['MODELO'][$i]!="MODELO"){
-                    $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
+                    $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_DASH)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }else{
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }
@@ -448,6 +469,14 @@ if($i==0){
                                 ->setSize(7)
                                 ->setColor(new Color(Color::COLOR_BLUE));
                         }
+                    }
+                }
+
+                for ($w = 0; $w < count($cantidadEmpleados['COD_DEPENDENCIA']); $w++) {
+                    if ($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$i] && $j['MODELO'][$i] == "MODELO") {
+                        $contempldir++;
+                    }elseif($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$i] && $j['MODELO'][$i] != "MODELO"){
+                        $contemplservc++;
                     }
                 }
 
@@ -467,7 +496,7 @@ if($i==0){
                     ->setOffsetX($anchotitulo)
                     ->setOffsetY($cnivposic[$clave]-30);
                 if($j['MODELO'][$i]!="MODELO"){
-                    $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
+                    $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_DASH)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }else{
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }
@@ -483,6 +512,14 @@ if($i==0){
                                 ->setSize(7)
                                 ->setColor(new Color(Color::COLOR_BLUE));
                         }
+                    }
+                }
+
+                for ($w = 0; $w < count($cantidadEmpleados['COD_DEPENDENCIA']); $w++) {
+                    if ($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$i] && $j['MODELO'][$i] == "MODELO") {
+                        $contempldir++;
+                    }elseif($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$i] && $j['MODELO'][$i] != "MODELO"){
+                        $contemplservc++;
                     }
                 }
 
@@ -502,7 +539,7 @@ if($i==0){
                     ->setOffsetX($anchotitulo)
                     ->setOffsetY($cnivposic[$clave]-30);
                 if($j['MODELO'][$i]!="MODELO"){
-                    $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
+                    $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_DASH)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }else{
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }
@@ -518,6 +555,14 @@ if($i==0){
                                 ->setSize(7)
                                 ->setColor(new Color(Color::COLOR_BLUE));
                         }
+                    }
+                }
+
+                for ($w = 0; $w < count($cantidadEmpleados['COD_DEPENDENCIA']); $w++) {
+                    if ($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$i] && $j['MODELO'][$i] == "MODELO") {
+                        $contempldir++;
+                    }elseif($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$i] && $j['MODELO'][$i] != "MODELO"){
+                        $contemplservc++;
                     }
                 }
 
@@ -537,7 +582,7 @@ if($i==0){
                     ->setOffsetX($anchotitulo)
                     ->setOffsetY($cnivposic[$clave]+80);
                 if($j['MODELO'][$i]!="MODELO"){
-                    $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
+                    $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_DASH)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }else{
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }
@@ -553,6 +598,14 @@ if($i==0){
                                 ->setSize(7)
                                 ->setColor(new Color(Color::COLOR_BLUE));
                         }
+                    }
+                }
+
+                for ($w = 0; $w < count($cantidadEmpleados['COD_DEPENDENCIA']); $w++) {
+                    if ($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$i] && $j['MODELO'][$i] == "MODELO") {
+                        $contempldir++;
+                    }elseif($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$i] && $j['MODELO'][$i] != "MODELO"){
+                        $contemplservc++;
                     }
                 }
 
@@ -581,7 +634,7 @@ if($i==0){
                             ->setOffsetX($resultdivunoc)
                             ->setOffsetY($cnivposicsub[$clave]);
                         if($j['MODELO'][$m]!="MODELO"){
-                            $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
+                            $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_DASH)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }else{
                             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }
@@ -597,6 +650,14 @@ if($i==0){
                                         ->setSize(7)
                                         ->setColor(new Color(Color::COLOR_BLUE));
                                 }
+                            }
+                        }
+
+                        for ($w = 0; $w < count($cantidadEmpleados['COD_DEPENDENCIA']); $w++) {
+                            if ($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$m] && $j['MODELO'][$m] == "MODELO") {
+                                $contempldir++;
+                            }elseif($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$m] && $j['MODELO'][$m] != "MODELO"){
+                                $contemplservc++;
                             }
                         }
                         //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
@@ -621,7 +682,7 @@ if($i==0){
                             ->setOffsetX($resultdivdosc)
                             ->setOffsetY($cnivposicsub[$clave]);
                         if($j['MODELO'][$m]!="MODELO"){
-                            $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
+                            $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_DASH)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }else{
                             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }
@@ -637,6 +698,14 @@ if($i==0){
                                         ->setSize(7)
                                         ->setColor(new Color(Color::COLOR_BLUE));
                                 }
+                            }
+                        }
+
+                        for ($w = 0; $w < count($cantidadEmpleados['COD_DEPENDENCIA']); $w++) {
+                            if ($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$m] && $j['MODELO'][$m] == "MODELO") {
+                                $contempldir++;
+                            }elseif($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$m] && $j['MODELO'][$m] != "MODELO"){
+                                $contemplservc++;
                             }
                         }
                         //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
@@ -661,7 +730,7 @@ if($i==0){
                             ->setOffsetX($resultdivtresc)
                             ->setOffsetY($cnivposicsub[$clave]);
                         if($j['MODELO'][$m]!="MODELO"){
-                            $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
+                            $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_DASH)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }else{
                             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }
@@ -677,6 +746,14 @@ if($i==0){
                                         ->setSize(7)
                                         ->setColor(new Color(Color::COLOR_BLUE));
                                 }
+                            }
+                        }
+
+                        for ($w = 0; $w < count($cantidadEmpleados['COD_DEPENDENCIA']); $w++) {
+                            if ($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$m] && $j['MODELO'][$m] == "MODELO") {
+                                $contempldir++;
+                            }elseif($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$m] && $j['MODELO'][$m] != "MODELO"){
+                                $contemplservc++;
                             }
                         }
                         //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
@@ -701,7 +778,7 @@ if($i==0){
                             ->setOffsetX($resultdivcuatroc)
                             ->setOffsetY($cnivposicsub[$clave]);
                         if($j['MODELO'][$m]!="MODELO"){
-                            $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
+                            $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_DASH)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }else{
                             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }
@@ -717,6 +794,14 @@ if($i==0){
                                         ->setSize(7)
                                         ->setColor(new Color(Color::COLOR_BLUE));
                                 }
+                            }
+                        }
+
+                        for ($w = 0; $w < count($cantidadEmpleados['COD_DEPENDENCIA']); $w++) {
+                            if ($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$m] && $j['MODELO'][$m] == "MODELO") {
+                                $contempldir++;
+                            }elseif($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$m] && $j['MODELO'][$m] != "MODELO"){
+                                $contemplservc++;
                             }
                         }
                         //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
@@ -741,7 +826,7 @@ if($i==0){
                             ->setOffsetX($resultdivcincoc)
                             ->setOffsetY($cnivposicsub[$clave]-20);
                         if($j['MODELO'][$m]!="MODELO"){
-                            $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
+                            $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_DASH)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }else{
                             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }
@@ -757,6 +842,14 @@ if($i==0){
                                         ->setSize(7)
                                         ->setColor(new Color(Color::COLOR_BLUE));
                                 }
+                            }
+                        }
+
+                        for ($w = 0; $w < count($cantidadEmpleados['COD_DEPENDENCIA']); $w++) {
+                            if ($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$m] && $j['MODELO'][$m] == "MODELO") {
+                                $contempldir++;
+                            }elseif($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$m] && $j['MODELO'][$m] != "MODELO"){
+                                $contemplservc++;
                             }
                         }
                         //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
@@ -781,7 +874,7 @@ if($i==0){
                             ->setOffsetX($resultdivcincoc)
                             ->setOffsetY($cnivposic[$clave]+80);
                         if($j['MODELO'][$m]!="MODELO"){
-                            $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
+                            $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_DASH)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }else{
                             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }
@@ -797,6 +890,14 @@ if($i==0){
                                         ->setSize(7)
                                         ->setColor(new Color(Color::COLOR_BLUE));
                                 }
+                            }
+                        }
+
+                        for ($w = 0; $w < count($cantidadEmpleados['COD_DEPENDENCIA']); $w++) {
+                            if ($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$m] && $j['MODELO'][$m] == "MODELO") {
+                                $contempldir++;
+                            }elseif($cantidadEmpleados['COD_DEPENDENCIA'][$w] == $j['CODIGO'][$m] && $j['MODELO'][$m] != "MODELO"){
+                                $contemplservc++;
                             }
                         }
                         //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
@@ -817,6 +918,31 @@ if($i==0){
             }
 
         }
+
+            $shape = $currentSlide->createRichTextShape()
+                ->setHeight(30)
+                ->setWidth(60)
+                ->setOffsetX(1230)
+                ->setOffsetY(35);
+            $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
+            $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
+            $textRun = $shape->createTextRun($contempldir);
+            $textRun->getFont()->setBold(true)
+                ->setSize(12)
+                ->setColor( new Color( 'FF000000' ) );
+
+            $shape = $currentSlide->createRichTextShape()
+                ->setHeight(30)
+                ->setWidth(60)
+                ->setOffsetX(1230)
+                ->setOffsetY(70);
+            $shape->getBorder()->setColor(new Color(Color::COLOR_BLUE))->setDashStyle(Border::DASH_DASH)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
+            $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
+            $textRun = $shape->createTextRun($contemplservc);
+            $textRun->getFont()->setBold(true)
+                ->setSize(12)
+                ->setColor( new Color( 'FF000000' ) );
+
             //LARGO IZQUIERDA, POSICION ALTO IZQUIERDA, LARGO DERECHA, POSICION ALTO DERECHA
             $shape = $currentSlide->createLineShape(60, $posicenyhij, 60, $posicenypad)->getBorder()->setColor(new Color(Color::COLOR_DARKBLUE))->setLineWidth(2);
         }
@@ -825,7 +951,8 @@ if($i==0){
         unset($j['CODIGO'][$i]);
         unset($j['DEPENDENCIA'][$i]);*/
 
-
+        $contempldir = 0;
+        $contemplservc = 0;
 
         $j['CODIGO'][$i]="NADA";
         $j['DEPENDENCIA'][$i]="NADA";
