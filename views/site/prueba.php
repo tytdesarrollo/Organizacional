@@ -153,7 +153,7 @@ for ($y = 0; $y < count($result_sub); $y++) {
         ->setOffsetX($anchotitulo-300)
         ->setOffsetY(4);
     $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-    $textRun = $shape->createTextRun( 'ORGANIGRAMA JERÁRQUICOS '.$c['NOM_OCUP_SUP'][0]);
+    $textRun = $shape->createTextRun( 'ORGANIGRAMA JERÁRQUICOS '.utf8_encode($c['NOM_OCUP_SUP'][0]));
     $textRun->getFont()->setBold(true)
         ->setSize(16)
         ->setColor( new Color( 'FF000000' ) );
@@ -210,7 +210,7 @@ for ($y = 0; $y < count($result_sub); $y++) {
         // LOGICA POSICIONES X CUADROS
         $anchodmporc = floor($anchodm * 0.07);
         $anchodmresult = $anchodm-$anchodmporc;
-        $posicionsig = 140;
+        $posicionsig = 126;
         $resultdivunoc = 70;
         $resultdivunocalto = 70;
         $resultdivdosc = 70;
@@ -310,7 +310,7 @@ if($i==0){
                     ->setOffsetX($anchotitulo-300)
                     ->setOffsetY(4);
                 $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-                $textRun = $shape->createTextRun( 'ORGANIGRAMA JERÁRQUICO '.$j['NOM_OCUP_SUP'][$i]);
+                $textRun = $shape->createTextRun( 'ORGANIGRAMA JERÁRQUICO '.utf8_encode($j['NOM_OCUP_SUP'][$i]));
                 $textRun->getFont()->setBold(true)
                     ->setSize(16)
                     ->setColor( new Color( 'FF000000' ) );
@@ -371,14 +371,14 @@ if($i==0){
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }
                 $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-                $textRun = $shape->createTextRun($j['AREA'][$i]);
+                $textRun = $shape->createTextRun(utf8_encode($j['AREA'][$i]));
                 $textRun->getFont()->setBold(true)
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
                 if($empleadosel==1){
                     for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
                         if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$i]) {
-                            $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                            $shape->createParagraph()->createTextRun(utf8_encode($cantidadEmpleados['NOMBRE'][$u]))->getFont()->setBold(true)
                                 ->setSize(7)
                                 ->setColor(new Color(Color::COLOR_BLUE));
                         }
@@ -414,14 +414,14 @@ if($i==0){
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }
                 $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-                $textRun = $shape->createTextRun($j['AREA'][$i]);
+                $textRun = $shape->createTextRun(utf8_encode($j['AREA'][$i]));
                 $textRun->getFont()->setBold(true)
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
                 if($empleadosel==1){
                     for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
                         if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$i]) {
-                            $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                            $shape->createParagraph()->createTextRun(utf8_encode($cantidadEmpleados['NOMBRE'][$u]))->getFont()->setBold(true)
                                 ->setSize(7)
                                 ->setColor(new Color(Color::COLOR_BLUE));
                         }
@@ -458,14 +458,14 @@ if($i==0){
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }
                 $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-                $textRun = $shape->createTextRun($j['AREA'][$i]);
+                $textRun = $shape->createTextRun(utf8_encode($j['AREA'][$i]));
                 $textRun->getFont()->setBold(true)
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
                 if($empleadosel==1){
                     for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
                         if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$i]) {
-                            $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                            $shape->createParagraph()->createTextRun(utf8_encode($cantidadEmpleados['NOMBRE'][$u]))->getFont()->setBold(true)
                                 ->setSize(7)
                                 ->setColor(new Color(Color::COLOR_BLUE));
                         }
@@ -501,14 +501,14 @@ if($i==0){
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }
                 $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-                $textRun = $shape->createTextRun($j['AREA'][$i]);
+                $textRun = $shape->createTextRun(utf8_encode($j['AREA'][$i]));
                 $textRun->getFont()->setBold(true)
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
                 if($empleadosel==1){
                     for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
                         if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$i]) {
-                            $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                            $shape->createParagraph()->createTextRun(utf8_encode($cantidadEmpleados['NOMBRE'][$u]))->getFont()->setBold(true)
                                 ->setSize(7)
                                 ->setColor(new Color(Color::COLOR_BLUE));
                         }
@@ -544,14 +544,14 @@ if($i==0){
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }
                 $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-                $textRun = $shape->createTextRun($j['AREA'][$i]);
+                $textRun = $shape->createTextRun(utf8_encode($j['AREA'][$i]));
                 $textRun->getFont()->setBold(true)
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
                 if($empleadosel==1){
                     for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
                         if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$i]) {
-                            $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                            $shape->createParagraph()->createTextRun(utf8_encode($cantidadEmpleados['NOMBRE'][$u]))->getFont()->setBold(true)
                                 ->setSize(7)
                                 ->setColor(new Color(Color::COLOR_BLUE));
                         }
@@ -587,14 +587,14 @@ if($i==0){
                     $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                 }
                 $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-                $textRun = $shape->createTextRun($j['AREA'][$i]);
+                $textRun = $shape->createTextRun(utf8_encode($j['AREA'][$i]));
                 $textRun->getFont()->setBold(true)
                     ->setSize(9)
                     ->setColor( new Color( 'FF000000' ) );
                 if($empleadosel==1){
                     for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
                         if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$i]) {
-                            $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                            $shape->createParagraph()->createTextRun(utf8_encode($cantidadEmpleados['NOMBRE'][$u]))->getFont()->setBold(true)
                                 ->setSize(7)
                                 ->setColor(new Color(Color::COLOR_BLUE));
                         }
@@ -630,7 +630,7 @@ if($i==0){
                         // primer cuadro de texto contenido
                         $shape = $currentSlide->createRichTextShape()
                             ->setHeight(80)
-                            ->setWidth(130)
+                            ->setWidth(118)
                             ->setOffsetX($resultdivunoc)
                             ->setOffsetY($cnivposicsub[$clave]);
                         if($j['MODELO'][$m]!="MODELO"){
@@ -639,14 +639,14 @@ if($i==0){
                             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }
                         $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-                        $textRun = $shape->createTextRun($j['AREA'][$m]);
+                        $textRun = $shape->createTextRun(utf8_encode($j['AREA'][$m]));
                         $textRun->getFont()->setBold(true)
                             ->setSize(7)
                             ->setColor( new Color( 'FF000000' ) );
                         if($empleadosel==1){
                             for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
                                 if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$m]) {
-                                    $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                    $shape->createParagraph()->createTextRun(utf8_encode($cantidadEmpleados['NOMBRE'][$u]))->getFont()->setBold(true)
                                         ->setSize(7)
                                         ->setColor(new Color(Color::COLOR_BLUE));
                                 }
@@ -678,7 +678,7 @@ if($i==0){
                         // primer cuadro de texto contenido
                         $shape = $currentSlide->createRichTextShape()
                             ->setHeight(80)
-                            ->setWidth(130)
+                            ->setWidth(118)
                             ->setOffsetX($resultdivdosc)
                             ->setOffsetY($cnivposicsub[$clave]);
                         if($j['MODELO'][$m]!="MODELO"){
@@ -687,14 +687,14 @@ if($i==0){
                             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }
                         $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-                        $textRun = $shape->createTextRun($j['AREA'][$m]);
+                        $textRun = $shape->createTextRun(utf8_encode($j['AREA'][$m]));
                         $textRun->getFont()->setBold(true)
                             ->setSize(7)
                             ->setColor( new Color( 'FF000000' ) );
                         if($empleadosel==1){
                             for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
                                 if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$m]) {
-                                    $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                    $shape->createParagraph()->createTextRun(utf8_encode($cantidadEmpleados['NOMBRE'][$u]))->getFont()->setBold(true)
                                         ->setSize(7)
                                         ->setColor(new Color(Color::COLOR_BLUE));
                                 }
@@ -726,7 +726,7 @@ if($i==0){
                         // primer cuadro de texto contenido
                         $shape = $currentSlide->createRichTextShape()
                             ->setHeight(80)
-                            ->setWidth(130)
+                            ->setWidth(118)
                             ->setOffsetX($resultdivtresc)
                             ->setOffsetY($cnivposicsub[$clave]);
                         if($j['MODELO'][$m]!="MODELO"){
@@ -735,14 +735,14 @@ if($i==0){
                             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }
                         $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-                        $textRun = $shape->createTextRun($j['AREA'][$m]);
+                        $textRun = $shape->createTextRun(utf8_encode($j['AREA'][$m]));
                         $textRun->getFont()->setBold(true)
                             ->setSize(7)
                             ->setColor( new Color( 'FF000000' ) );
                         if($empleadosel==1){
                             for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
                                 if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$m]) {
-                                    $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                    $shape->createParagraph()->createTextRun(utf8_encode($cantidadEmpleados['NOMBRE'][$u]))->getFont()->setBold(true)
                                         ->setSize(7)
                                         ->setColor(new Color(Color::COLOR_BLUE));
                                 }
@@ -774,7 +774,7 @@ if($i==0){
                         // primer cuadro de texto contenido
                         $shape = $currentSlide->createRichTextShape()
                             ->setHeight(80)
-                            ->setWidth(130)
+                            ->setWidth(118)
                             ->setOffsetX($resultdivcuatroc)
                             ->setOffsetY($cnivposicsub[$clave]);
                         if($j['MODELO'][$m]!="MODELO"){
@@ -783,14 +783,14 @@ if($i==0){
                             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }
                         $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-                        $textRun = $shape->createTextRun($j['AREA'][$m]);
+                        $textRun = $shape->createTextRun(utf8_encode($j['AREA'][$m]));
                         $textRun->getFont()->setBold(true)
                             ->setSize(7)
                             ->setColor( new Color( 'FF000000' ) );
                         if($empleadosel==1){
                             for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
                                 if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$m]) {
-                                    $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                    $shape->createParagraph()->createTextRun(utf8_encode($cantidadEmpleados['NOMBRE'][$u]))->getFont()->setBold(true)
                                         ->setSize(7)
                                         ->setColor(new Color(Color::COLOR_BLUE));
                                 }
@@ -822,7 +822,7 @@ if($i==0){
                         // primer cuadro de texto contenido
                         $shape = $currentSlide->createRichTextShape()
                             ->setHeight(80)
-                            ->setWidth(130)
+                            ->setWidth(118)
                             ->setOffsetX($resultdivcincoc)
                             ->setOffsetY($cnivposicsub[$clave]-20);
                         if($j['MODELO'][$m]!="MODELO"){
@@ -831,14 +831,14 @@ if($i==0){
                             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }
                         $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-                        $textRun = $shape->createTextRun($j['AREA'][$m]);
+                        $textRun = $shape->createTextRun(utf8_encode($j['AREA'][$m]));
                         $textRun->getFont()->setBold(true)
                             ->setSize(7)
                             ->setColor( new Color( 'FF000000' ) );
                         if($empleadosel==1){
                             for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
                                 if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$m]) {
-                                    $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                    $shape->createParagraph()->createTextRun(utf8_encode($cantidadEmpleados['NOMBRE'][$u]))->getFont()->setBold(true)
                                         ->setSize(7)
                                         ->setColor(new Color(Color::COLOR_BLUE));
                                 }
@@ -870,7 +870,7 @@ if($i==0){
                         // primer cuadro de texto contenido
                         $shape = $currentSlide->createRichTextShape()
                             ->setHeight(80)
-                            ->setWidth(130)
+                            ->setWidth(118)
                             ->setOffsetX($resultdivcincoc)
                             ->setOffsetY($cnivposic[$clave]+80);
                         if($j['MODELO'][$m]!="MODELO"){
@@ -879,14 +879,14 @@ if($i==0){
                             $shape->getBorder()->setColor(new Color(Color::COLOR_BLACK))->setDashStyle(Border::DASH_SOLID)->setLineStyle(Border::LINE_SINGLE)->setLineWidth(2);
                         }
                         $shape->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_CENTER );
-                        $textRun = $shape->createTextRun($j['AREA'][$m]);
+                        $textRun = $shape->createTextRun(utf8_encode($j['AREA'][$m]));
                         $textRun->getFont()->setBold(true)
                             ->setSize(7)
                             ->setColor( new Color( 'FF000000' ) );
                         if($empleadosel==1){
                             for ($u = 0; $u < count($cantidadEmpleados['COD_DEPENDENCIA']); $u++) {
                                 if ($cantidadEmpleados['COD_DEPENDENCIA'][$u] == $j['CODIGO'][$m]) {
-                                    $shape->createParagraph()->createTextRun($cantidadEmpleados['NOMBRE'][$u])->getFont()->setBold(true)
+                                    $shape->createParagraph()->createTextRun(utf8_encode($cantidadEmpleados['NOMBRE'][$u]))->getFont()->setBold(true)
                                         ->setSize(7)
                                         ->setColor(new Color(Color::COLOR_BLUE));
                                 }
